@@ -13,6 +13,6 @@ public class Event extends Task {
 
   @Override
   public String toString() {
-      return "[D]%s (from: %s to: %s)".formatted(super.toString(), this.fromTime, this.toTime);
+      return "[E]%s (from: %s to: %s)".formatted(super.toString(), this.fromTime, this.toTime);
   }
 }
