@@ -1,3 +1,4 @@
+package tasks;
 public class Event extends Task {
   String fromTime;
   String toTime;

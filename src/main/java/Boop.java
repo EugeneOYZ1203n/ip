@@ -1,4 +1,7 @@
 import java.util.Scanner;
+import tasks.Deadline;
+import tasks.Event;
+import tasks.Todo;
 
 public class Boop {
     static String LINE = "____________________________________________________________";
