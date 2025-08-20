@@ -9,15 +9,25 @@ public class Boop {
 
         OUTER:
         while (true) {
-            String command = getNextCommand();
-            
+            String line = getNextLine();
+            String[] words = line.split(" ");
+            String command = words[0];
+
             switch (command) {
                 case "bye" -> {
                     printSection(Farewell.farewell());
                     break OUTER;
                 }
+                case "mark" -> {
+                    int index = Integer.parseInt(words[1]);
+                    printSection(TaskList.mark(index));
+                }
+                case "unmark" -> {
+                    int index = Integer.parseInt(words[1]);
+                    printSection(TaskList.unmark(index));
+                }
                 case "list" -> printSection(TaskList.display());
-                default -> printSection(TaskList.addToList(command));
+                default -> printSection(TaskList.addToList(line));
             }
         }
     }
@@ -28,7 +38,7 @@ public class Boop {
             .replaceAll("(?m)^", "\t"));
     }
 
-    public static String getNextCommand() {
+    public static String getNextLine() {
         return sc.nextLine();
     }
 }
