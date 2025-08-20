@@ -24,7 +24,10 @@ public class TaskList {
         .append("\n");
     }
 
-    return sb.toString();
+    return """
+        Here ye go, ya tasks young lass:
+        %s
+        """.formatted(sb.toString());
   }
 
   public static String mark(int index) {
