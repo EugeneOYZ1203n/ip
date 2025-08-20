@@ -24,4 +24,24 @@ public class TaskList {
 
     return sb.toString();
   }
+
+  public static String mark(int index) {
+    Task task = tasks.get(index-1);
+    task.complete();
+
+    return """
+        Yosh! Gotcha! Marked dat as completed!
+        \t%s
+        """.formatted(task.toString());
+  }
+
+  public static String unmark(int index) {
+    Task task = tasks.get(index-1);
+    task.uncomplete();
+
+    return """
+        Aye no worries! Marked dat as not done yet!
+        \t%s
+        """.formatted(task.toString());
+  }
 }
