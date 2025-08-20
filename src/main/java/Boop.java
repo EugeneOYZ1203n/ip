@@ -7,16 +7,17 @@ public class Boop {
     public static void main(String[] args) {
         printSection(Greet.greeting("Boop"));
 
+        OUTER:
         while (true) {
             String command = getNextCommand();
-
-            if (command.equals("bye")) {
-                printSection(Farewell.farewell());
-                break;
-            } else if (command.equals("list")) {
-                printSection(TaskList.display());
-            } else {
-                printSection(TaskList.addToList(command));
+            
+            switch (command) {
+                case "bye" -> {
+                    printSection(Farewell.farewell());
+                    break OUTER;
+                }
+                case "list" -> printSection(TaskList.display());
+                default -> printSection(TaskList.addToList(command));
             }
         }
     }
