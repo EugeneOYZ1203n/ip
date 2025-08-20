@@ -5,12 +5,14 @@ import java.util.List;
 public class TaskList {
   static List<Task> tasks = new ArrayList<>();
 
-  public static String addToList(String newItemName) {
-    tasks.add(new Task(newItemName));
+  public static String addToList(Task newTask) {
+    tasks.add(newTask);
 
     return """
-        Me remember for ye: %s
-        """.formatted(newItemName);
+        Ho! Me remember for ye:
+        \t%s
+        Now ya got like %d tasks ta do!
+        """.formatted(newTask.toString(), tasks.size());
   }
 
   public static String display() {
