@@ -16,6 +16,17 @@ public class TaskList {
         """.formatted(newTask.toString(), tasks.size());
   }
 
+  public static String deleteTask(int index) {
+    Task task = tasks.get(index-1);
+    tasks.remove(index-1);
+
+    return """
+        Aite little missy! It shall be gone this here task:
+        \t%s
+        Now ya got like %d tasks ta do!
+        """.formatted(task.toString(), tasks.size());
+  }
+
   public static String display() {
     StringBuilder sb = new StringBuilder();
 
@@ -49,5 +60,9 @@ public class TaskList {
         Aye no worries! Marked dat as not done yet!
         \t%s
         """.formatted(task.toString());
+  }
+
+  public static boolean isValidIndex(int index) {
+    return index <= tasks.size() && index >= 1;
   }
 }
