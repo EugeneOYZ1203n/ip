@@ -3,14 +3,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TaskList {
-  static List<String> tasks = new ArrayList<>();
+  static List<Task> tasks = new ArrayList<>();
 
-  public static String addToList(String newItem) {
-    tasks.add(newItem);
+  public static String addToList(String newItemName) {
+    tasks.add(new Task(newItemName));
 
     return """
         Me remember for ye: %s
-        """.formatted(newItem);
+        """.formatted(newItemName);
   }
 
   public static String display() {
@@ -18,8 +18,8 @@ public class TaskList {
 
     for (int i = 1; i <= tasks.size(); i++) {
       sb.append("%d.\t".formatted(i))
-        .append(tasks.get(i-1))
-        .append("\n"); // add space between words
+        .append(tasks.get(i-1).toString())
+        .append("\n");
     }
 
     return sb.toString();
