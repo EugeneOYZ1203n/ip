@@ -25,12 +25,13 @@ public class Boop {
                         break OUTER;
                     }
                     case "mark" -> {
-                        int index = Integer.parseInt(words[1]);
-                        printSection(TaskList.mark(index));
+                        printSection(TaskList.mark(getIndexArgument(words)));
                     }
                     case "unmark" -> {
-                        int index = Integer.parseInt(words[1]);
-                        printSection(TaskList.unmark(index));
+                        printSection(TaskList.unmark(getIndexArgument(words)));
+                    }
+                    case "delete" -> {
+                        printSection(TaskList.deleteTask(getIndexArgument(words)));
                     }
                     case "list" -> printSection(TaskList.display());
                     case "todo" -> {
@@ -72,5 +73,22 @@ public class Boop {
 
     public static String getNextLine() {
         return sc.nextLine();
+    }
+
+    public static int getIndexArgument(String[] words) throws BoopError {
+        if (words.length < 2) { throw new BoopError("Ya missing da index!"); }
+
+        int index;
+        try {
+            index = Integer.parseInt(words[1]);
+        } catch (NumberFormatException e) {
+            throw new BoopError("Ya number ain't numbering!");
+        }
+
+        if (!TaskList.isValidIndex(index)) {
+            throw new BoopError("Ya index ain't right, nothin with that number!");
+        }
+
+        return index;
     }
 }
