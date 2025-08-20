@@ -12,4 +12,8 @@ public class Boop {
             .formatted(LINE, content, LINE)
             .replaceAll("(?m)^", "\t"));
     }
+
+    public static String getNextCommand() {
+        return sc.nextLine();
+    }
 }
