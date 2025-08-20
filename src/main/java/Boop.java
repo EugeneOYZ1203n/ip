@@ -10,7 +10,7 @@ public class Boop {
         OUTER:
         while (true) {
             String line = getNextLine();
-            String[] words = line.split(" ");
+            String[] words = line.split(" ", 2);
             String command = words[0];
 
             switch (command) {
@@ -27,7 +27,22 @@ public class Boop {
                     printSection(TaskList.unmark(index));
                 }
                 case "list" -> printSection(TaskList.display());
-                default -> printSection(TaskList.addToList(line));
+                case "todo" -> {
+                    printSection(TaskList.addToList(new Todo(words[1])));
+                }
+                case "deadline" -> {
+                    String[] parts = words[1].split("/by", 2);
+                    String name = parts[0].trim();
+                    String by = parts[1].trim();
+                    printSection(TaskList.addToList(new Deadline(name, by)));
+                }
+                case "event" -> {
+                    String[] parts = words[1].split("/from|/to");
+                    String name = parts[0].trim();
+                    String from = parts[1].trim();
+                    String to = parts[2].trim();
+                    printSection(TaskList.addToList(new Event(name, from, to)));
+                }
             }
         }
     }
