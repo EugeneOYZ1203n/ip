@@ -33,6 +33,10 @@
 	____________________________________________________________
 
 	____________________________________________________________
+	Arr me bad! Ya missing da index!
+	____________________________________________________________
+
+	____________________________________________________________
 	Here ye go, ya tasks young lass:
 	1.	[T][ ] borrow book
 	2.	[T][ ] shoot gun
@@ -58,8 +62,9 @@
 	____________________________________________________________
 
 	____________________________________________________________
-	Yosh! Gotcha! Marked dat as completed!
-		[T][X] shoot gun
+	Aite little missy! It shall be gone this here task:
+		[T][ ] shoot gun
+	Now ya got like 2 tasks ta do!
 	____________________________________________________________
 
 	____________________________________________________________
@@ -68,16 +73,27 @@
 	____________________________________________________________
 
 	____________________________________________________________
+	Arr me bad! Ya index ain't right, nothin with that number!
+	____________________________________________________________
+
+	____________________________________________________________
+	Arr me bad! Ya index ain't right, nothin with that number!
+	____________________________________________________________
+
+	____________________________________________________________
+	Arr me bad! Ya index ain't right, nothin with that number!
+	____________________________________________________________
+
+	____________________________________________________________
 	Here ye go, ya tasks young lass:
 	1.	[T][ ] borrow book
-	2.	[T][X] shoot gun
-	3.	[D][X] return book (by: Sunday)
+	2.	[D][X] return book (by: Sunday)
 	
 	____________________________________________________________
 
 	____________________________________________________________
 	Aye no worries! Marked dat as not done yet!
-		[T][ ] shoot gun
+		[D][ ] return book (by: Sunday)
 	____________________________________________________________
 
 	____________________________________________________________
@@ -91,20 +107,23 @@
 	____________________________________________________________
 	Ho! Me remember for ye:
 		[E][ ] project meeting (from: Mon 2pm to: 4pm)
-	Now ya got like 4 tasks ta do!
+	Now ya got like 3 tasks ta do!
 	____________________________________________________________
 
 	____________________________________________________________
-	Yosh! Gotcha! Marked dat as completed!
-		[E][X] project meeting (from: Mon 2pm to: 4pm)
+	Arr me bad! Ya index ain't right, nothin with that number!
+	____________________________________________________________
+
+	____________________________________________________________
+	Aite little missy! It shall be gone this here task:
+		[T][ ] borrow book
+	Now ya got like 2 tasks ta do!
 	____________________________________________________________
 
 	____________________________________________________________
 	Here ye go, ya tasks young lass:
-	1.	[T][ ] borrow book
-	2.	[T][ ] shoot gun
-	3.	[D][X] return book (by: Sunday)
-	4.	[E][X] project meeting (from: Mon 2pm to: 4pm)
+	1.	[D][ ] return book (by: Sunday)
+	2.	[E][ ] project meeting (from: Mon 2pm to: 4pm)
 	
 	____________________________________________________________
 
