@@ -8,6 +8,8 @@ public class Boop {
     }
 
     public static void printSection(String content) {
-        System.out.println("%s%s".formatted(content, LINE));
+        System.out.println("%s\n%s%s\n"
+            .formatted(LINE, content, LINE)
+            .replaceAll("(?m)^", "\t"));
     }
 }
