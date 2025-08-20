@@ -1,10 +1,22 @@
+import java.util.Scanner;
+
 public class Boop {
     static String LINE = "____________________________________________________________";
+    static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-        printSection("");
         printSection(Greet.greeting("Boop"));
-        printSection(Farewell.farewell());
+
+        while (true) {
+            String command = getNextCommand();
+
+            if (command.equals("bye")) {
+                printSection(Farewell.farewell());
+                break;
+            } else {
+                printSection(command+"\n");
+            }
+        }
     }
 
     public static void printSection(String content) {
