@@ -1,8 +1,8 @@
 public class Greet {
   public static String greeting(String name) {
     return """
-           Hello! I'm %s. :D
-           What can I do for you?
+           Yo! I'm %s. :D
+           Wat can ye do for thee, young lass?
            """.formatted(name);
   }
 }
