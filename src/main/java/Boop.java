@@ -13,8 +13,10 @@ public class Boop {
             if (command.equals("bye")) {
                 printSection(Farewell.farewell());
                 break;
+            } else if (command.equals("list")) {
+                printSection(TaskList.display());
             } else {
-                printSection(command+"\n");
+                printSection(TaskList.addToList(command));
             }
         }
     }
