@@ -1,7 +1,7 @@
 public class Farewell {
   public static String farewell() {
     return """
-           Bye. Hope to see you again soon!
+           Later young lass. Hope ta see ya around these here parts!
            """;
   }
 }
