@@ -1,5 +1,6 @@
 import errors.BoopError;
 import errors.ErrorHandler;
+import java.time.LocalDate;
 import java.util.Scanner;
 import tasks.Deadline;
 import tasks.Event;
@@ -45,7 +46,7 @@ public class Boop {
                     String[] parts = words[1].split("/by", 2);
                     if (parts.length < 2) { throw new BoopError("Ya missing da deadline!"); }
                     String name = parts[0].trim();
-                    String by = parts[1].trim();
+                    LocalDate by = LocalDate.parse(parts[1].trim());
                     printSection(TaskList.addToList(new Deadline(name, by)));
                 }
                 case "event" -> {
