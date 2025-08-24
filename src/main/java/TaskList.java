@@ -1,13 +1,41 @@
 
+import errors.BoopError;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import tasks.Task;
 
 public class TaskList {
   static List<Task> tasks = new ArrayList<>();
+  static SaveHandler saveHandler = new SaveHandler("./data/tasks.txt");
+
+  public static void loadTasks() {
+    try {
+      String[] saveStrings = saveHandler.load();
+      for (String saveString : saveStrings) {
+        tasks.add(Task.fromSaveString(saveString));
+      }
+    } catch (IOException e) {
+      throw new BoopError("Young lass ya save file ain't loadin rite!");
+    }
+  }
+
+  private static void saveTasks() {
+    try {
+      String[] saveStrings = new String[tasks.size()];
+      for (int i = 0; i < tasks.size(); i++) {
+        saveStrings[i] = tasks.get(i).toSaveString();
+      }
+
+      saveHandler.save(saveStrings);
+    } catch (IOException e) {
+      throw new BoopError("Young lass ya save file ain't loadin rite!");
+    }
+  }
 
   public static String addToList(Task newTask) {
     tasks.add(newTask);
+    saveTasks();
 
     return """
         Ho! Me remember for ye:
@@ -19,6 +47,7 @@ public class TaskList {
   public static String deleteTask(int index) {
     Task task = tasks.get(index-1);
     tasks.remove(index-1);
+    saveTasks();
 
     return """
         Aite little missy! It shall be gone this here task:
@@ -45,6 +74,7 @@ public class TaskList {
   public static String mark(int index) {
     Task task = tasks.get(index-1);
     task.complete();
+    saveTasks();
 
     return """
         Yosh! Gotcha! Marked dat as completed!
@@ -55,6 +85,7 @@ public class TaskList {
   public static String unmark(int index) {
     Task task = tasks.get(index-1);
     task.uncomplete();
+    saveTasks();
 
     return """
         Aye no worries! Marked dat as not done yet!
