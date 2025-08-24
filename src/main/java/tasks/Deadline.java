@@ -1,26 +1,30 @@
 package tasks;
 
 import errors.BoopError;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Deadline extends Task {
-  String deadline;
+  LocalDate deadline;
 
-  public Deadline(String name, boolean isComplete, String deadline) {
+  public Deadline(String name, boolean isComplete, LocalDate deadline) {
     super(name, isComplete);
     this.deadline = deadline;
   }
-  public Deadline(String name, String deadline) {
+  public Deadline(String name, LocalDate deadline) {
     this(name, false, deadline);
   }
 
   @Override
   public String toString() {
-      return "[D]%s (by: %s)".formatted(super.toString(), this.deadline);
+      return "[D]%s (by: %s)".formatted(
+        super.toString(), 
+        this.deadline.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
   }
 
   @Override
   public String toSaveString() {
-    return "D | %s | %s".formatted(super.toSaveString(), this.deadline);
+    return "D | %s | %s".formatted(super.toSaveString(), this.deadline.toString());
   }
 
   public static Deadline fromSaveString(String saveString) throws BoopError {
@@ -35,7 +39,7 @@ public class Deadline extends Task {
 
     boolean isDone = parts[1].equals("X");
     String name = parts[2];
-    String deadline = parts[3];
+    LocalDate deadline = LocalDate.parse(parts[3]);
 
     return new Deadline(name, isDone, deadline);
   }
