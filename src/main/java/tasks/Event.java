@@ -1,4 +1,7 @@
 package tasks;
+
+import errors.BoopError;
+
 public class Event extends Task {
   String fromTime;
   String toTime;
@@ -20,5 +23,23 @@ public class Event extends Task {
   @Override
   public String toSaveString() {
     return "E | %s | %s | %s".formatted(super.toString(), this.fromTime, this.toTime);
+  }
+
+  public static Event fromSaveString(String saveString) throws BoopError {
+    String[] parts = saveString.split(" \\| ");
+    String type = parts[0];
+
+    if (!type.equals("E")) { throw new BoopError("Some issue occured! This function is for Events not for: " + type); }
+
+    if (parts.length < 5) { 
+      throw new BoopError("Save file might be corrupted, cancelling loading process!!"); 
+    }
+
+    boolean isDone = parts[1].equals("X");
+    String name = parts[2];
+    String fromTime = parts[3];
+    String toTime = parts[4];
+
+    return new Event(name, isDone, fromTime, toTime);
   }
 }
