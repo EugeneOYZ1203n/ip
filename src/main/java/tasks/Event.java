@@ -16,4 +16,9 @@ public class Event extends Task {
   public String toString() {
       return "[E]%s (from: %s to: %s)".formatted(super.toString(), this.fromTime, this.toTime);
   }
+
+  @Override
+  public String toSaveString() {
+    return "E | %s | %s | %s".formatted(super.toString(), this.fromTime, this.toTime);
+  }
 }

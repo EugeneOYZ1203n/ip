@@ -17,9 +17,16 @@ public class Task {
 
   @Override
   public String toString() {
-      return "[%s] %s".formatted(
-        this.isComplete ? "X" : " ",
-        this.name
-      );
+    return "[%s] %s".formatted(
+      this.isComplete ? "X" : " ",
+      this.name
+    );
+  }
+
+  public String toSaveString() {
+    return "%s | %s".formatted(
+      this.isComplete ? "X" : " ",
+      this.name
+    );
   }
 }

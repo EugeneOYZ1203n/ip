@@ -12,4 +12,9 @@ public class Todo extends Task {
   public String toString() {
       return "[T]%s".formatted(super.toString());
   }
+  
+  @Override
+  public String toSaveString() {
+    return "T | %s | %s".formatted(super.toString());
+  }
 }
