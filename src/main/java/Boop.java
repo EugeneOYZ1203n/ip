@@ -1,5 +1,4 @@
 import errors.BoopError;
-import errors.ErrorHandler;
 import java.time.LocalDate;
 import java.util.Scanner;
 import tasks.Deadline;
@@ -13,7 +12,7 @@ public class Boop {
     public static void main(String[] args) {
         TaskList.loadTasks();
 
-        printSection(Greet.greeting("Boop"));
+        UI.greeting("Boop");
 
         OUTER:
         while (true) {
@@ -24,22 +23,22 @@ public class Boop {
             try {
                 switch (command) {
                 case "bye" -> {
-                    printSection(Farewell.farewell());
+                    UI.farewell();
                     break OUTER;
                 }
                 case "mark" -> {
-                    printSection(TaskList.mark(getIndexArgument(words)));
+                    UI.printSection(TaskList.mark(getIndexArgument(words)));
                 }
                 case "unmark" -> {
-                    printSection(TaskList.unmark(getIndexArgument(words)));
+                    UI.printSection(TaskList.unmark(getIndexArgument(words)));
                 }
                 case "delete" -> {
-                    printSection(TaskList.deleteTask(getIndexArgument(words)));
+                    UI.printSection(TaskList.deleteTask(getIndexArgument(words)));
                 }
-                case "list" -> printSection(TaskList.display());
+                case "list" -> UI.printSection(TaskList.display());
                 case "todo" -> {
                     if (words.length < 2) { throw new BoopError("Ya missing da name!"); }
-                    printSection(TaskList.addToList(new Todo(words[1])));
+                    UI.printSection(TaskList.addToList(new Todo(words[1])));
                 }
                 case "deadline" -> {
                     if (words.length < 2) { throw new BoopError("Ya missing da name!"); }
@@ -47,7 +46,7 @@ public class Boop {
                     if (parts.length < 2) { throw new BoopError("Ya missing da deadline!"); }
                     String name = parts[0].trim();
                     LocalDate by = LocalDate.parse(parts[1].trim());
-                    printSection(TaskList.addToList(new Deadline(name, by)));
+                    UI.printSection(TaskList.addToList(new Deadline(name, by)));
                 }
                 case "event" -> {
                     if (words.length < 2) { throw new BoopError("Ya missing da name!"); }
@@ -57,21 +56,15 @@ public class Boop {
                     String name = parts[0].trim();
                     String from = parts[1].trim();
                     String to = parts[2].trim();
-                    printSection(TaskList.addToList(new Event(name, from, to)));
+                    UI.printSection(TaskList.addToList(new Event(name, from, to)));
                 }
                 default -> throw new BoopError("Don't get wut ya sayin missy. Say it again!");
                 }
             } catch (BoopError e) {
-                printSection(ErrorHandler.getErrorMessage(e));
+                UI.errorMessage(e);
             }
         }
         
-    }
-
-    public static void printSection(String content) {
-        System.out.println("%s\n%s%s\n"
-            .formatted(LINE, content, LINE)
-            .replaceAll("(?m)^", "\t"));
     }
 
     public static String getNextLine() {
