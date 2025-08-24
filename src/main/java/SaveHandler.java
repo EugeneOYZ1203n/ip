@@ -33,6 +33,6 @@ public class SaveHandler {
 
     List<String> lines = Files.readAllLines(savePath);
 
-    return (String[]) lines.toArray();
+    return lines.toArray(String[]::new);
   }
 }
