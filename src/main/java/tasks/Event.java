@@ -22,7 +22,7 @@ public class Event extends Task {
 
   @Override
   public String toSaveString() {
-    return "E | %s | %s | %s".formatted(super.toString(), this.fromTime, this.toTime);
+    return "E | %s | %s | %s".formatted(super.toSaveString(), this.fromTime, this.toTime);
   }
 
   public static Event fromSaveString(String saveString) throws BoopError {

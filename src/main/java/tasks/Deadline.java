@@ -20,7 +20,7 @@ public class Deadline extends Task {
 
   @Override
   public String toSaveString() {
-    return "D | %s | %s".formatted(super.toString(), this.deadline);
+    return "D | %s | %s".formatted(super.toSaveString(), this.deadline);
   }
 
   public static Deadline fromSaveString(String saveString) throws BoopError {

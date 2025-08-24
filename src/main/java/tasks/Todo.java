@@ -18,7 +18,7 @@ public class Todo extends Task {
   
   @Override
   public String toSaveString() {
-    return "T | %s | %s".formatted(super.toString());
+    return "T | %s".formatted(super.toSaveString());
   }
 
   public static Todo fromSaveString(String saveString) throws BoopError {
