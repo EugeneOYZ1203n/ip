@@ -1,3 +1,4 @@
+package app;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -6,7 +7,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
-public class SaveHandler {
+public final class SaveHandler {
   private final Path savePath;
 
   public SaveHandler(String savePathName) {
