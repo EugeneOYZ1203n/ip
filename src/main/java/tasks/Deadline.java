@@ -3,6 +3,7 @@ package tasks;
 import errors.BoopError;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class Deadline extends Task {
   LocalDate deadline;
@@ -39,7 +40,12 @@ public class Deadline extends Task {
 
     boolean isDone = parts[1].equals("X");
     String name = parts[2];
-    LocalDate deadline = LocalDate.parse(parts[3]);
+    LocalDate deadline;
+    try {
+      deadline = LocalDate.parse(parts[3]);
+    } catch (DateTimeParseException e) {
+      throw new BoopError("Save file might be corrupted, cancelling loading process!!"); 
+    }
 
     return new Deadline(name, isDone, deadline);
   }
