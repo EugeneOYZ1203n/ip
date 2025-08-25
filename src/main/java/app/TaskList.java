@@ -1,3 +1,4 @@
+package app;
 
 import errors.BoopError;
 import java.io.IOException;
@@ -5,22 +6,28 @@ import java.util.ArrayList;
 import java.util.List;
 import tasks.Task;
 
-public class TaskList {
-  static List<Task> tasks = new ArrayList<>();
-  static SaveHandler saveHandler = new SaveHandler("./data/tasks.txt");
+public final class TaskList {
+  List<Task> tasks;
+  SaveHandler saveHandler;
 
-  public static void loadTasks() {
+  public TaskList() {
+    tasks = new ArrayList<>();
+    saveHandler = new SaveHandler("./data/tasks.txt");
+  }
+
+  public void loadTasks() throws BoopError {
     try {
       String[] saveStrings = saveHandler.load();
       for (String saveString : saveStrings) {
         tasks.add(Task.fromSaveString(saveString));
       }
     } catch (IOException e) {
+      tasks = new ArrayList<>();
       throw new BoopError("Young lass ya save file ain't loadin rite!");
     }
   }
 
-  private static void saveTasks() {
+  private void saveTasks() {
     try {
       String[] saveStrings = new String[tasks.size()];
       for (int i = 0; i < tasks.size(); i++) {
@@ -33,30 +40,23 @@ public class TaskList {
     }
   }
 
-  public static String addToList(Task newTask) {
+  public void addToList(Task newTask) {
     tasks.add(newTask);
     saveTasks();
-
-    return """
-        Ho! Me remember for ye:
-        \t%s
-        Now ya got like %d tasks ta do!
-        """.formatted(newTask.toString(), tasks.size());
   }
 
-  public static String deleteTask(int index) {
+  public Task deleteTask(int index) {
     Task task = tasks.get(index-1);
     tasks.remove(index-1);
     saveTasks();
-
-    return """
-        Aite little missy! It shall be gone this here task:
-        \t%s
-        Now ya got like %d tasks ta do!
-        """.formatted(task.toString(), tasks.size());
+    return task;
   }
 
-  public static String display() {
+  public int getTaskslistLength() {
+    return tasks.size();
+  }
+
+  public String display() {
     StringBuilder sb = new StringBuilder();
 
     for (int i = 1; i <= tasks.size(); i++) {
@@ -65,35 +65,24 @@ public class TaskList {
         .append("\n");
     }
 
-    return """
-        Here ye go, ya tasks young lass:
-        %s
-        """.formatted(sb.toString());
+    return sb.toString();
   }
 
-  public static String mark(int index) {
+  public Task mark(int index) {
     Task task = tasks.get(index-1);
     task.complete();
     saveTasks();
-
-    return """
-        Yosh! Gotcha! Marked dat as completed!
-        \t%s
-        """.formatted(task.toString());
+    return task; 
   }
 
-  public static String unmark(int index) {
+  public Task unmark(int index) {
     Task task = tasks.get(index-1);
     task.uncomplete();
     saveTasks();
-
-    return """
-        Aye no worries! Marked dat as not done yet!
-        \t%s
-        """.formatted(task.toString());
+    return task;
   }
 
-  public static boolean isValidIndex(int index) {
+  public boolean isValidIndex(int index) {
     return index <= tasks.size() && index >= 1;
   }
 }
