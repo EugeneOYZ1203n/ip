@@ -7,7 +7,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
-public final class SaveHandler {
+public class SaveHandler {
   private final Path savePath;
 
   public SaveHandler(String savePathName) {
