@@ -7,6 +7,13 @@ import java.util.Map;
 import errors.BoopError;
 
 public class CommandHelpers {
+  /** 
+   * Gets the index argument for simple task functions like mark and delete
+   * 
+   * @param input Full input string passed by the user
+   * @return Index given as parameter by the user
+   * @throws BoopError
+   */
   public static int getIndexArgument(String input) throws BoopError {
     String[] words = input.split("\\s+", 2);
 
@@ -26,6 +33,13 @@ public class CommandHelpers {
     private final Map<String, String> values = new HashMap<>();
     private final Map<String, String> aliasToCanonical = new HashMap<>();
 
+    /** 
+     * Returns flags in a format that allows for easy access
+     * 
+     * @param definitions Mapping of canonical flag to all valid flag names
+     * @param input Full input string passed by the user
+     * @return Flags that contain input parameters
+     */
     public static Flags parseFlags(
             Map<String, List<String>> definitions, 
             String input) {
@@ -74,14 +88,24 @@ public class CommandHelpers {
         }
       }
 
+      /** 
+     * Returns value of flag
+     * 
+     * @param flag Canonical name of flag
+     * @return flag value
+     */
       public String get(String flag) {
         return values.get(flag);
       }
 
+      /** 
+     * Returns whether flag is present
+     * 
+     * @param flag Canonical name of flag
+     * @return is flag present
+     */
       public boolean has(String flag) {
         return values.containsKey(flag);
       }
   }
-
-
 }

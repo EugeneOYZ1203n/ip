@@ -1,9 +1,10 @@
 package commands;
 
+import java.util.Map;
+
 import app.TaskList;
 import commands.CommandHelpers.Flags;
 import errors.BoopError;
-import java.util.Map;
 import tasks.Todo;
 
 public class C_TaskTodo extends Command {

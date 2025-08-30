@@ -16,6 +16,12 @@ import errors.BoopError;
 public final class Parser {
   static Scanner sc = new Scanner(System.in);
 
+  /** 
+   * Returns the next command to be executed
+   * 
+   * @return Command generated from the next line user inputs
+   * @throws BoopError
+   */
   public Command getNextCommand() throws BoopError {
     String nextLine = sc.nextLine();
 
