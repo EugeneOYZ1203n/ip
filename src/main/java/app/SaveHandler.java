@@ -14,6 +14,12 @@ public class SaveHandler {
     this.savePath = Paths.get(savePathName);
   }
 
+  /** 
+   * Saves given strings into the file at the previously set File Path
+   * 
+   * @param saveStrings
+   * @throws IOException
+   */
   public void save(String[] saveStrings) throws IOException {
     if (!Files.exists(savePath)) { 
       Files.createDirectories(savePath.getParent());
@@ -26,6 +32,12 @@ public class SaveHandler {
     }
   }
 
+  /** 
+   * Loads given strings from the file at the previously set File Path
+   * 
+   * @return strings stored in save file as an array
+   * @throws IOException
+   */
   public String[] load() throws IOException {
     if (!Files.exists(savePath)) {
       Files.createDirectories(savePath.getParent());

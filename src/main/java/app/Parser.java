@@ -1,4 +1,6 @@
 package app;
+import java.util.Scanner;
+
 import commands.C_Farewell;
 import commands.C_TaskDeadline;
 import commands.C_TaskDelete;
@@ -9,11 +11,16 @@ import commands.C_TaskTodo;
 import commands.C_TaskUnmark;
 import commands.Command;
 import errors.BoopError;
-import java.util.Scanner;
 
 public final class Parser {
   static Scanner sc = new Scanner(System.in);
 
+  /** 
+   * Returns the next command to be executed
+   * 
+   * @return Command generated from the next line user inputs
+   * @throws BoopError
+   */
   public Command getNextCommand() throws BoopError {
     String nextLine = sc.nextLine();
 
