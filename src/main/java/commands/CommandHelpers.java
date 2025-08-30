@@ -1,9 +1,10 @@
 package commands;
 
-import errors.BoopError;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import errors.BoopError;
 
 public class CommandHelpers {
   public static int getIndexArgument(String input) throws BoopError {

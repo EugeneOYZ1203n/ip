@@ -1,9 +1,10 @@
 package app;
 
-import errors.BoopError;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import errors.BoopError;
 import tasks.Task;
 
 public final class TaskList {

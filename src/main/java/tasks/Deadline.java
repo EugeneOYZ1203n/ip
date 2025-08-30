@@ -1,9 +1,10 @@
 package tasks;
 
-import errors.BoopError;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+import errors.BoopError;
 
 public class Deadline extends Task {
   LocalDate deadline;
