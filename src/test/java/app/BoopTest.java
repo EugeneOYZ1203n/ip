@@ -35,7 +35,7 @@ public class BoopTest {
         Boop.config.taskSavePathName = tempTaskFile.toString();
 
         // Run Boop.main in another thread
-        appThread = new Thread(() -> Boop.main(new String[]{}));
+        appThread = new Thread(() -> Boop.main(new String[] {}));
         appThread.start();
     }
 
@@ -69,7 +69,8 @@ public class BoopTest {
     void boop_wrongCommands_errorMessage() throws Exception {
         // Send an invalid command
         String badCommandOut = sendCommand("blah");
-        assertTrue(badCommandOut.contains("Say it again!"), "Should print error for invalid command. Printed:" + badCommandOut);
+        assertTrue(badCommandOut.contains("Say it again!"),
+                "Should print error for invalid command. Printed:" + badCommandOut);
     }
 
     @AfterEach
