@@ -4,40 +4,53 @@ import commands.Command;
 import errors.BoopError;
 
 public class Boop {
-    public static class Config {
-        public String taskSavePathName = "./data/tasks.txt";
+    private MessageHandler messageHandler;
+    private TaskList tasklist;
+    private Parser parser;
+
+    public class BoopResponse {
+        public String message;
+        public boolean isExit;
+
+        public BoopResponse(String message, boolean isExit) {
+            this.message = message;
+            this.isExit = isExit;
+        }
     }
 
-    public static Config config = new Config();
+    public Boop() {
+        this("./data/tasks.txt");
+    }
 
-    public static void main(String[] args) {
-        UI ui = new UI();
-        TaskList tasklist = new TaskList(config.taskSavePathName);
-        Parser parser = new Parser();
+    public Boop(String taskSavePathName) {
+        messageHandler = new MessageHandler();
+        tasklist = new TaskList(taskSavePathName);
+        parser = new Parser();
+    }
 
-        ui.greeting();
+    public String initialize() {
+        return messageHandler.greeting();
+    }
 
+    public String loadTasks() {
         try {
             tasklist.loadTasks();
         } catch (BoopError e) {
-            ui.errorMessage(e);
+            return messageHandler.errorMessage(e);
         }
 
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                Command c = parser.getNextCommand();
-
-                c.execute(tasklist);
-
-                String msg = c.getMessage();
-                ui.printSection(msg);
-
-                isExit = c.isExit();
-            } catch (BoopError e) {
-                ui.errorMessage(e);
-            }
-        }
+        return messageHandler.finishLoading();
     }
 
+    public BoopResponse getResponse(String input) {
+        try {
+            Command c = parser.getNextCommand(input);
+
+            c.execute(tasklist);
+
+            return new BoopResponse(c.getMessage(), c.isExit());
+        } catch (BoopError e) {
+            return new BoopResponse(messageHandler.errorMessage(e), false);
+        }
+    }
 }
