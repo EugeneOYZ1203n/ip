@@ -1,15 +1,17 @@
 package app;
+import java.util.Scanner;
+
 import commands.C_Farewell;
 import commands.C_TaskDeadline;
 import commands.C_TaskDelete;
 import commands.C_TaskEvent;
+import commands.C_TaskFind;
 import commands.C_TaskList;
 import commands.C_TaskMark;
 import commands.C_TaskTodo;
 import commands.C_TaskUnmark;
 import commands.Command;
 import errors.BoopError;
-import java.util.Scanner;
 
 public final class Parser {
   static Scanner sc = new Scanner(System.in);
@@ -44,6 +46,9 @@ public final class Parser {
     }
     case "event" -> {
         return new C_TaskEvent(nextLine);
+    }
+    case "find" -> {
+        return new C_TaskFind(nextLine);
     }
     default -> throw new BoopError("Don't get wut ya sayin missy. Say it again!");
     }
