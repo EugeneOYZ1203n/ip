@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import app.SaveHandler;
-
 public class SaveHandlerStub extends SaveHandler {
 
     List<String> saveData;
