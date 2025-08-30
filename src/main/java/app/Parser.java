@@ -23,9 +23,7 @@ public final class Parser {
      * @return Command generated from the next line user inputs
      * @throws BoopError
      */
-    public Command getNextCommand() throws BoopError {
-        String nextLine = sc.nextLine();
-
+    public Command getNextCommand(String nextLine) throws BoopError {
         String[] words = nextLine.split(" ", 2);
         String commandName = words[0].trim();
 
