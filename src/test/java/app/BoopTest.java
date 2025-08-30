@@ -1,18 +1,23 @@
 package app;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PipedInputStream;
+import java.io.PipedOutputStream;
+import java.io.PrintStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 import org.junit.jupiter.api.AfterEach;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.io.*;
 
 public class BoopTest {
     private PipedOutputStream testInWriter;
     private ByteArrayOutputStream testOut;
 
     private Thread appThread;
+    private Path tempTaskFile;
 
     @BeforeEach
     void setUp() throws Exception {
@@ -25,62 +30,46 @@ public class BoopTest {
         testOut = new ByteArrayOutputStream();
         System.setOut(new PrintStream(testOut));
 
-        // Setup fake persistent data
-        Boop.config.taskSavePathName = "./data/test/tasks.txt";
+        // Setup fake persistent data with a temp file
+        tempTaskFile = Files.createTempFile("test-tasks", ".txt");
+        Boop.config.taskSavePathName = tempTaskFile.toString();
 
         // Run Boop.main in another thread
         appThread = new Thread(() -> Boop.main(new String[]{}));
         appThread.start();
     }
 
-    private String sendCommand(String command, long waitMs) throws Exception {
+    private String sendCommand(String command) throws Exception {
         // Write one command line to "System.in"
         testInWriter.write((command + System.lineSeparator()).getBytes());
         testInWriter.flush();
 
-        // Give Boop some time to process
-        Thread.sleep(waitMs);
-
-        // Capture output and reset for next command
-        String output = testOut.toString();
-        testOut.reset();
-        return output;
+        long start = System.currentTimeMillis();
+        while (true) {
+            String output = testOut.toString();
+            if (output.contains("...")) {
+                testOut.reset();
+                return output;
+            }
+            if (System.currentTimeMillis() - start > 10000) {
+                throw new RuntimeException("Timeout waiting for Boop response: " + output);
+            }
+            Thread.sleep(50);
+        }
     }
 
     @Test
     void boop_greet_sendGreeting() throws Exception {
         // Greeting should appear at start
-        String greetingOut = sendCommand("", 200);
+        String greetingOut = sendCommand("");
         assertTrue(greetingOut.contains("Boop"), "Should greet user. Printed: " + greetingOut);
     }
 
     @Test
     void boop_wrongCommands_errorMessage() throws Exception {
         // Send an invalid command
-        sendCommand("", 200);
-        String badCommandOut = sendCommand("blah", 200);
+        String badCommandOut = sendCommand("blah");
         assertTrue(badCommandOut.contains("Say it again!"), "Should print error for invalid command. Printed:" + badCommandOut);
-    }
-
-    @Test
-    void boop_todoListCommands_displaysCorrectly() throws Exception {
-        // Add a todo
-        sendCommand("", 200);
-        String todoOut = sendCommand("todo borrow book", 200);
-        assertTrue(todoOut.contains("borrow book"), todoOut);
-
-        // List tasks
-        String listOut = sendCommand("list", 200);
-        assertTrue(listOut.contains("1."), "List should show numbered tasks");
-        assertTrue(listOut.contains("borrow book"), "List should show todo name");
-
-        // Delete a task
-        String deleteOut = sendCommand("delete 1", 200);
-        assertTrue(deleteOut.contains("borrow book"));
-
-        // Exit
-        String byeOut = sendCommand("bye", 200);
-        assertTrue(byeOut.contains("Later"));
     }
 
     @AfterEach

@@ -2,12 +2,13 @@ package app;
 import errors.BoopError;
 
 public final class UI {
-  String LINE = "____________________________________________________________";
+  final String LINE = "____________________________________________________________";
+  final String WAIT_LINE = "____________________________________________________________...";
   String name = "Boop";
   
   public void printSection(String content) {
       System.out.println("%s\n%s%s\n"
-          .formatted(LINE, content, LINE)
+          .formatted(LINE, content, WAIT_LINE)
           .replaceAll("(?m)^", "\t"));
   }
   
