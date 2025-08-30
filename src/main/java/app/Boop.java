@@ -4,9 +4,15 @@ import commands.Command;
 import errors.BoopError;
 
 public class Boop {
+    public static class Config {
+        public String taskSavePathName = "./data/tasks.txt";
+    }
+
+    public static Config config = new Config();
+
     public static void main(String[] args) {
         UI ui = new UI();
-        TaskList tasklist = new TaskList();
+        TaskList tasklist = new TaskList(config.taskSavePathName);
         Parser parser = new Parser();
 
         ui.greeting();

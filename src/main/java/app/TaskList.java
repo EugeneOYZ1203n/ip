@@ -10,9 +10,14 @@ public final class TaskList {
   List<Task> tasks;
   SaveHandler saveHandler;
 
-  public TaskList() {
+  public TaskList(String savePathName) {
     tasks = new ArrayList<>();
-    saveHandler = new SaveHandler("./data/tasks.txt");
+    saveHandler = new SaveHandler(savePathName);
+  }
+
+  public TaskList(SaveHandler saveHandler) {
+    tasks = new ArrayList<>();
+    this.saveHandler = saveHandler;
   }
 
   public void loadTasks() throws BoopError {
@@ -36,7 +41,7 @@ public final class TaskList {
 
       saveHandler.save(saveStrings);
     } catch (IOException e) {
-      throw new BoopError("Young lass ya save file ain't loadin rite!");
+      throw new BoopError("Young lass ya save file ain't savin rite!");
     }
   }
 
