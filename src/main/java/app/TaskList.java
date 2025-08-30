@@ -1,9 +1,11 @@
 package app;
 
-import errors.BoopError;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
+
+import errors.BoopError;
 import tasks.Task;
 
 public final class TaskList {
@@ -61,16 +63,24 @@ public final class TaskList {
     return tasks.size();
   }
 
-  public String display() {
+  public String filterDisplay(String regex) {
+    Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
     StringBuilder sb = new StringBuilder();
 
     for (int i = 1; i <= tasks.size(); i++) {
-      sb.append("%d.\t".formatted(i))
-        .append(tasks.get(i-1).toString())
-        .append("\n");
+      String taskStr = tasks.get(i - 1).toString();
+      if (pattern.matcher(taskStr).find()) {
+            sb.append("%d.\t".formatted(i))
+              .append(taskStr)
+              .append("\n");
+        }
     }
 
     return sb.toString();
+  }
+
+  public String display() {
+    return filterDisplay("");
   }
 
   public Task mark(int index) {
