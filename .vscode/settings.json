@@ -4,5 +4,11 @@
     "editor.detectIndentation": false,
     "editor.trimAutoWhitespace": true,
     "files.insertFinalNewline": true,
-    "files.trimFinalNewlines": true
+    "files.trimFinalNewlines": true,
+    "java.format.settings.url": "eclipse-formatter.xml",
+    "java.format.settings.profile": "Checkstyle-Compatible",
+    "editor.formatOnSave": true,
+    "[java]": {
+    "editor.defaultFormatter": "redhat.java"
+    }
 }
