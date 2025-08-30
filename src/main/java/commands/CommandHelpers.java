@@ -56,8 +56,13 @@ public class CommandHelpers {
         }
 
         // parts is all the flags and the arguments used
-        String[] parts = input.split("\\s+", 2)[1]
-                              .split(" /(?=\\w+)");
+        String[] sections = input.split("\\s+", 2);
+
+        if (sections.length < 2) {
+          return;
+        }
+
+        String[] parts = sections[1].split(" /(?=\\w+)");
         // this is the argument with no flag
         String noFlagArg = parts[0].trim();
         if (!noFlagArg.isEmpty()) {
@@ -65,21 +70,21 @@ public class CommandHelpers {
         }
 
         for (int i = 1; i < parts.length; i++) {
-            String[] flagSplit = parts[i].split("\\s+", 2);
-            // first value is the name of the flag "/" was already removed by split
-            String rawFlag = flagSplit[0];
-            // everything else is the value
-            String value = (flagSplit.length > 1) ? flagSplit[1].trim() : "";
+          String[] flagSplit = parts[i].split("\\s+", 2);
+          // first value is the name of the flag "/" was already removed by split
+          String rawFlag = flagSplit[0];
+          // everything else is the value
+          String value = (flagSplit.length > 1) ? flagSplit[1].trim() : "";
 
-            // Convert aliases to canonical
-            String canonical = aliasToCanonical.get(rawFlag);
-            if (canonical == null) {
-                throw new BoopError("Unknown flag was used: " + rawFlag);
-            }
-            if (values.containsKey(canonical)) {
-                throw new BoopError("Duplicate flag was used: " + rawFlag);
-            }
-            values.put(canonical, value);
+          // Convert aliases to canonical
+          String canonical = aliasToCanonical.get(rawFlag);
+          if (canonical == null) {
+              throw new BoopError("Unknown flag was used: " + rawFlag);
+          }
+          if (values.containsKey(canonical)) {
+              throw new BoopError("Duplicate flag was used: " + rawFlag);
+          }
+          values.put(canonical, value);
         }
       }
 

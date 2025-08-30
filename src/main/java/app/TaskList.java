@@ -3,6 +3,7 @@ package app;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import errors.BoopError;
 import tasks.Task;
@@ -90,33 +91,48 @@ public final class TaskList {
 
   /** 
    * Returns the String representation of the Task list
+   * Only includes tasks that fit the filter regex
    * 
+   * @param regex Regex used to filter tasks
    * @return String representation of the Task list
    */
-  public String display() {
+  public String filterDisplay(String regex) {
+    Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
     StringBuilder sb = new StringBuilder();
 
     for (int i = 1; i <= tasks.size(); i++) {
-      sb.append("%d.\t".formatted(i))
-        .append(tasks.get(i-1).toString())
-        .append("\n");
+      String taskStr = tasks.get(i - 1).toString();
+      if (pattern.matcher(taskStr).find()) {
+            sb.append("%d.\t".formatted(i))
+              .append(taskStr)
+              .append("\n");
+        }
     }
 
     return sb.toString();
   }
 
   /** 
-   * Marks a task at the given index of the task list
+   * Returns the String representation of the Task list
    * 
-   * @param index Starts from 1
-   * @return Task that was deleted
+   * @return String representation of the Task list
    */
-  public Task mark(int index) {
-    Task task = tasks.get(index-1);
-    task.complete();
-    saveTasks();
-    return task; 
+  public String display() {
+    return filterDisplay("");
   }
+
+    /** 
+     * Marks a task at the given index of the task list
+     * 
+     * @param index Starts from 1
+     * @return Task that was deleted
+     */
+    public Task mark(int index) {
+        Task task = tasks.get(index-1);
+        task.complete();
+        saveTasks();
+        return task; 
+    }
 
   /** 
    * Unmarks a task at the given index of the task list
