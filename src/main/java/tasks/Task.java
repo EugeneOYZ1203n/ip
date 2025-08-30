@@ -18,6 +18,9 @@ public class Task {
   public void complete() { this.isComplete = true; }
   public void uncomplete() { this.isComplete = false; }
 
+  /** 
+   * @return String format of task
+   */
   @Override
   public String toString() {
     return "[%s] %s".formatted(
@@ -26,6 +29,11 @@ public class Task {
     );
   }
 
+  /** 
+   * Returns the Save String format of the task
+   * 
+   * @return Format for writing into save file
+   */
   public String toSaveString() {
     return "%s | %s".formatted(
       this.isComplete ? "X" : " ",
@@ -33,6 +41,13 @@ public class Task {
     );
   }
 
+  /** 
+   * Converts a Save String format of a task back into a Task instance
+   * 
+   * @param saveString task in format written in save file
+   * @return Task using data from save file
+   * @throws BoopError
+   */
   public static Task fromSaveString(String saveString) throws BoopError {
     String[] parts = saveString.split(" \\| ");
 

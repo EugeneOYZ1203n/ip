@@ -6,6 +6,11 @@ public final class UI {
   final String WAIT_LINE = "____________________________________________________________...";
   String name = "Boop";
   
+  /** 
+   * Prints a new UI Message wrapped in lines
+   * 
+   * @param content Message to be shown to users
+   */
   public void printSection(String content) {
       System.out.println("%s\n%s%s\n"
           .formatted(LINE, content, WAIT_LINE)
@@ -19,6 +24,11 @@ public final class UI {
       """.formatted(name));
   }
 
+  /** 
+   * Prints a UI Error message
+   * 
+   * @param error Error that has occured
+   */
   public void errorMessage(BoopError error) {
     printSection("""
         Arr me bad! %s

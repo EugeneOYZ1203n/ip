@@ -10,6 +10,9 @@ public class Boop {
 
     public static Config config = new Config();
 
+    /** 
+     * @param args
+     */
     public static void main(String[] args) {
         UI ui = new UI();
         TaskList tasklist = new TaskList(config.taskSavePathName);
