@@ -28,34 +28,34 @@ public final class Parser {
         String commandName = words[0].trim();
 
         switch (commandName) {
-            case "bye" -> {
-                return new C_Farewell();
-            }
-            case "mark" -> {
-                return new C_TaskMark(nextLine);
-            }
-            case "unmark" -> {
-                return new C_TaskUnmark(nextLine);
-            }
-            case "delete" -> {
-                return new C_TaskDelete(nextLine);
-            }
-            case "list" -> {
-                return new C_TaskList();
-            }
-            case "todo" -> {
-                return new C_TaskTodo(nextLine);
-            }
-            case "deadline" -> {
-                return new C_TaskDeadline(nextLine);
-            }
-            case "event" -> {
-                return new C_TaskEvent(nextLine);
-            }
-            case "find" -> {
-                return new C_TaskFind(nextLine);
-            }
-            default -> throw new BoopError("Don't get wut ya sayin missy. Say it again!");
+        case "bye" -> {
+            return new C_Farewell();
+        }
+        case "mark" -> {
+            return new C_TaskMark(nextLine);
+        }
+        case "unmark" -> {
+            return new C_TaskUnmark(nextLine);
+        }
+        case "delete" -> {
+            return new C_TaskDelete(nextLine);
+        }
+        case "list" -> {
+            return new C_TaskList();
+        }
+        case "todo" -> {
+            return new C_TaskTodo(nextLine);
+        }
+        case "deadline" -> {
+            return new C_TaskDeadline(nextLine);
+        }
+        case "event" -> {
+            return new C_TaskEvent(nextLine);
+        }
+        case "find" -> {
+            return new C_TaskFind(nextLine);
+        }
+        default -> throw new BoopError("Don't get wut ya sayin missy. Say it again!");
         }
     }
 }

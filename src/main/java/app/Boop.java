@@ -5,7 +5,7 @@ import errors.BoopError;
 
 public class Boop {
     private MessageHandler messageHandler;
-    private TaskList tasklist;
+    private TaskList taskList;
     private Parser parser;
 
     public class BoopResponse {
@@ -24,7 +24,7 @@ public class Boop {
 
     public Boop(String taskSavePathName) {
         messageHandler = new MessageHandler();
-        tasklist = new TaskList(taskSavePathName);
+        taskList = new TaskList(taskSavePathName);
         parser = new Parser();
     }
 
@@ -34,7 +34,7 @@ public class Boop {
 
     public String loadTasks() {
         try {
-            tasklist.loadTasks();
+            taskList.loadTasks();
         } catch (BoopError e) {
             return messageHandler.errorMessage(e);
         }
@@ -46,7 +46,7 @@ public class Boop {
         try {
             Command c = parser.getNextCommand(input);
 
-            c.execute(tasklist);
+            c.execute(taskList);
 
             return new BoopResponse(c.getMessage(), c.isExit());
         } catch (BoopError e) {
