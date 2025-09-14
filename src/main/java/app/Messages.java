@@ -58,6 +58,12 @@ public final class Messages {
             \t%s
             Now ya got like %d tasks ta do!
             """;
+    
+    public static final String COMMAND_UNDO = """
+            Hookay me have undid ya past command:
+            \t%s
+            Now ya got like %d tasks ta do!
+            """;
 
     public static final String ERROR_UNKNOWN_COMMAND = "Don't get wut ya sayin missy. Say it again!";
 
