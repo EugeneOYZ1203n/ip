@@ -1,25 +1,29 @@
 package app;
 
-import java.util.Scanner;
-
-import commands.C_Farewell;
-import commands.C_TaskDeadline;
-import commands.C_TaskDelete;
-import commands.C_TaskEvent;
-import commands.C_TaskFind;
-import commands.C_TaskList;
-import commands.C_TaskMark;
-import commands.C_TaskTodo;
-import commands.C_TaskUnmark;
 import commands.Command;
+import commands.CommandFarewell;
+import commands.CommandTaskDeadline;
+import commands.CommandTaskDelete;
+import commands.CommandTaskEvent;
+import commands.CommandTaskFind;
+import commands.CommandTaskList;
+import commands.CommandTaskMark;
+import commands.CommandTaskTodo;
+import commands.CommandTaskUnmark;
 import errors.BoopError;
 
+/**
+ * The Parser class is responsible for interpreting raw user input
+ * and converting it into executable Command objects.
+ *
+ * It examines the first word of the input to determine the
+ * command type and constructs the appropriate Command instance.
+ */
 public final class Parser {
-    static Scanner sc = new Scanner(System.in);
-
     /**
      * Returns the next command to be executed
-     * 
+     *
+     * @param nextLine the raw input string used to generate the next command
      * @return Command generated from the next line user inputs
      * @throws BoopError
      */
@@ -29,33 +33,33 @@ public final class Parser {
 
         switch (commandName) {
         case "bye" -> {
-            return new C_Farewell();
+            return new CommandFarewell();
         }
         case "mark" -> {
-            return new C_TaskMark(nextLine);
+            return new CommandTaskMark(nextLine);
         }
         case "unmark" -> {
-            return new C_TaskUnmark(nextLine);
+            return new CommandTaskUnmark(nextLine);
         }
         case "delete" -> {
-            return new C_TaskDelete(nextLine);
+            return new CommandTaskDelete(nextLine);
         }
         case "list" -> {
-            return new C_TaskList();
+            return new CommandTaskList();
         }
         case "todo" -> {
-            return new C_TaskTodo(nextLine);
+            return new CommandTaskTodo(nextLine);
         }
         case "deadline" -> {
-            return new C_TaskDeadline(nextLine);
+            return new CommandTaskDeadline(nextLine);
         }
         case "event" -> {
-            return new C_TaskEvent(nextLine);
+            return new CommandTaskEvent(nextLine);
         }
         case "find" -> {
-            return new C_TaskFind(nextLine);
+            return new CommandTaskFind(nextLine);
         }
-        default -> throw new BoopError("Don't get wut ya sayin missy. Say it again!");
+        default -> throw new BoopError(Messages.ERROR_UNKNOWN_COMMAND);
         }
     }
 }

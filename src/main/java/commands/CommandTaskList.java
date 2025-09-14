@@ -1,9 +1,13 @@
 package commands;
 
+import app.Messages;
 import app.TaskList;
 import errors.BoopError;
 
-public class C_TaskList extends Command {
+/**
+ * This command displays all tasks currently stored in the task list.
+ */
+public class CommandTaskList extends Command {
     private String taskDisplay;
 
     @Override
@@ -13,9 +17,6 @@ public class C_TaskList extends Command {
 
     @Override
     public String getMessage() {
-        return """
-                Here ye go, ya tasks young lass:
-                %s
-                """.formatted(taskDisplay);
+        return Messages.COMMAND_LIST.formatted(taskDisplay);
     }
 }

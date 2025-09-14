@@ -3,12 +3,17 @@ package commands;
 import java.util.List;
 import java.util.Map;
 
+import app.Messages;
 import app.TaskList;
 import commands.CommandHelpers.Flags;
 import errors.BoopError;
 import tasks.Event;
 
-public class C_TaskEvent extends Command {
+/**
+ * This command creates a new Event task.
+ * The task is then added to the task list and saved.
+ */
+public class CommandTaskEvent extends Command {
     private static final Map<String, List<String>> flagNames = Map.of(
             "from", List.of("from", "f"),
             "to", List.of("to", "t"));
@@ -16,17 +21,23 @@ public class C_TaskEvent extends Command {
     private final Event event;
     private int taskSize;
 
-    public C_TaskEvent(String input) throws BoopError {
+    /**
+     * Creates a Event command from the given user input.
+     *
+     * @param input Raw user input string
+     * @throws BoopError if the task name or start and end times is missing
+     */
+    public CommandTaskEvent(String input) throws BoopError {
         Flags flags = Flags.parseFlags(flagNames, input);
 
         if (!flags.has("")) {
-            throw new BoopError("Name not given!");
+            throw new BoopError(Messages.ERROR_NAME_NOT_GIVEN);
         }
         if (!flags.has("from")) {
-            throw new BoopError("Start time not given!");
+            throw new BoopError(Messages.ERROR_STARTTIME_NOT_GIVEN);
         }
         if (!flags.has("to")) {
-            throw new BoopError("End time not given!");
+            throw new BoopError(Messages.ERROR_ENDTIME_NOT_GIVEN);
         }
 
         event = new Event(
@@ -43,10 +54,6 @@ public class C_TaskEvent extends Command {
 
     @Override
     public String getMessage() {
-        return """
-                Ho! Me remember for ye:
-                \t%s
-                Now ya got like %d tasks ta do!
-                """.formatted(event.toString(), taskSize);
+        return Messages.COMMAND_EVENT.formatted(event.toString(), taskSize);
     }
 }
