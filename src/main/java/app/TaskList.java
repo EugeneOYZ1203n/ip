@@ -34,6 +34,7 @@ public final class TaskList {
      * @param saveHandler the save handler to use for saving and loading tasks
      */
     public TaskList(SaveHandler saveHandler) {
+        assert saveHandler != null : "SaveHandler must not be null";
         tasks = new ArrayList<>();
         this.saveHandler = saveHandler;
     }
@@ -79,6 +80,7 @@ public final class TaskList {
      * @param newTask Task to be added
      */
     public void addToList(Task newTask) {
+        assert newTask != null : "Cannot add null task";
         tasks.add(newTask);
         saveTasks();
     }
@@ -90,6 +92,7 @@ public final class TaskList {
      * @return Task that was deleted
      */
     public Task deleteTask(int index) {
+        assert isValidIndex(index) : "Index out of bounds for deleteTask: " + index;
         Task task = tasks.get(index - 1);
         tasks.remove(index - 1);
         saveTasks();
@@ -113,6 +116,7 @@ public final class TaskList {
      * @return String representation of the Task list
      */
     public String filterDisplay(String regex) {
+        assert regex != null : "Regex must not be null";
         Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
         StringBuilder sb = new StringBuilder();
 
@@ -144,6 +148,7 @@ public final class TaskList {
      * @return Task that was deleted
      */
     public Task mark(int index) {
+        assert isValidIndex(index) : "Index out of bounds for deleteTask: " + index;
         Task task = tasks.get(index - 1);
         task.complete();
         saveTasks();
@@ -157,6 +162,7 @@ public final class TaskList {
      * @return Task that was deleted
      */
     public Task unmark(int index) {
+        assert isValidIndex(index) : "Index out of bounds for deleteTask: " + index;
         Task task = tasks.get(index - 1);
         task.uncomplete();
         saveTasks();

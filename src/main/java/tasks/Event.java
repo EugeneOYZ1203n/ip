@@ -66,6 +66,7 @@ public class Event extends Task {
 
         boolean isDone = parts[1].equals("X");
         String name = parts[2];
+        assert name != null && !name.isEmpty() : "Task name must not be null or empty";
         String fromTime = parts[3];
         String toTime = parts[4];
 

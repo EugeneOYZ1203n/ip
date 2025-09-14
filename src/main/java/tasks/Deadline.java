@@ -69,6 +69,7 @@ public class Deadline extends Task {
 
         boolean isDone = parts[1].equals("X");
         String name = parts[2];
+        assert name != null && !name.isEmpty() : "Task name must not be null or empty";
         LocalDate deadline;
         try {
             deadline = LocalDate.parse(parts[3]);
