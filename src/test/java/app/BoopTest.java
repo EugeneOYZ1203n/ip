@@ -1,11 +1,10 @@
 package app;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -113,6 +112,27 @@ class BoopTest {
                 && !out.getMessage().contains("5")
                 && out.getMessage().contains("6"),
                 "Numbers remain in sequence. Printed: " + out.getMessage());
+    }
+
+    @Test
+    void boop_undo_singleTaskUndoBehavior() {
+        Boop.BoopResponse undoBefore = boop.getResponse("undo");
+        assertTrue(undoBefore.getMessage().contains("Nothing to undo"),
+                "Should give error when undoing without previous action. Printed: " + undoBefore.getMessage());
+
+        Boop.BoopResponse out = boop.getResponse("todo singleTask");
+        assertTrue(out.getMessage().contains("singleTask"),
+                "Should confirm task added. Printed: " + out.getMessage());
+
+        Boop.BoopResponse undoAfterAdd = boop.getResponse("undo");
+        assertTrue(undoAfterAdd.getMessage().contains("Hookay me have undid"),
+                "Should undo last action. Printed: " + undoAfterAdd.getMessage());
+        assertTrue(undoAfterAdd.getMessage().contains("todo singleTask"),
+                "Should include the undone command. Printed: " + undoAfterAdd.getMessage());
+
+        Boop.BoopResponse undoAfterUndo = boop.getResponse("undo");
+        assertTrue(undoAfterUndo.getMessage().contains("Nothing to undo"),
+                "Should give error when undoing again. Printed: " + undoAfterUndo.getMessage());
     }
 
     @Test
