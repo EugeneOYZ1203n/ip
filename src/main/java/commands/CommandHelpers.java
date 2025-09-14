@@ -51,13 +51,7 @@ public class CommandHelpers {
         private final Map<String, String> aliasToCanonical = new HashMap<>();
 
         private Flags(Map<String, List<String>> definitions, String input) throws BoopError {
-            // Build alias lookup, actual flag + list of possible options
-            for (Map.Entry<String, List<String>> e : definitions.entrySet()) {
-                String canonical = e.getKey();
-                for (String alias : e.getValue()) {
-                    aliasToCanonical.put(alias, canonical);
-                }
-            }
+            buildAliasLookup(definitions);
 
             // parts is all the flags and the arguments used
             String[] sections = input.split("\\s+", 2);
@@ -67,28 +61,54 @@ public class CommandHelpers {
             }
 
             String[] parts = sections[1].split(" /(?=\\w+)");
-            // this is the argument with no flag
-            String noFlagArg = parts[0].trim();
-            if (!noFlagArg.isEmpty()) {
-                values.put("", noFlagArg);
-            }
+            addNoFlagArgument(parts[0].trim());
 
+            parseFlagParts(parts);
+        }
+
+        /**
+         * Builds a mapping from flag aliases to canonical names.
+         *
+         * @param definitions mapping of canonical flags to all valid flag names
+         */
+        private void buildAliasLookup(Map<String, List<String>> definitions) {
+            for (Map.Entry<String, List<String>> e : definitions.entrySet()) {
+                String canonical = e.getKey();
+                for (String alias : e.getValue()) {
+                    aliasToCanonical.put(alias, canonical);
+                }
+            }
+        }
+
+        private void addNoFlagArgument(String arg) {
+            if (!arg.isEmpty()) {
+                values.put("", arg);
+            }
+        }
+
+        private void parseFlagParts(String[] parts) throws BoopError {
             for (int i = 1; i < parts.length; i++) {
                 String[] flagSplit = parts[i].split("\\s+", 2);
-                // first value is the name of the flag "/" was already removed by split
                 String rawFlag = flagSplit[0];
-                // everything else is the value
-                String value = (flagSplit.length > 1) ? flagSplit[1].trim() : "";
+                String value = extractFlagValue(flagSplit);
 
-                // Convert aliases to canonical
                 String canonical = aliasToCanonical.get(rawFlag);
-                if (canonical == null) {
-                    throw new BoopError("Unknown flag was used: " + rawFlag);
-                }
-                if (values.containsKey(canonical)) {
-                    throw new BoopError("Duplicate flag was used: " + rawFlag);
-                }
+                validateFlag(rawFlag, canonical);
+
                 values.put(canonical, value);
+            }
+        }
+
+        private String extractFlagValue(String[] flagSplit) {
+            return flagSplit.length > 1 ? flagSplit[1].trim() : "";
+        }
+
+        private void validateFlag(String rawFlag, String canonical) throws BoopError {
+            if (canonical == null) {
+                throw new BoopError("Unknown flag was used: " + rawFlag);
+            }
+            if (values.containsKey(canonical)) {
+                throw new BoopError("Duplicate flag was used: " + rawFlag);
             }
         }
 
