@@ -2,104 +2,105 @@ package app;
 
 /**
  * Central repository for all user-facing message strings.
+ * Tailored to Duke with a "Great Sage" personality: authoritative, precise, and
+ * confident.
  */
 public final class Messages {
 
-    public static final String GREETING = "Yo! I'm %s. :D\nWat can ye do for thee, young lass?";
+    public static final String GREETING = "Affirmative. I am %s, your Great Sage. How may I assist you today?";
 
-    public static final String TASKS_LOADED = "Tasks loaded miss. :D";
+    public static final String TASKS_LOADED = "Confirmed. All tasks have been loaded successfully.";
 
-    public static final String ERROR_PREFIX = "Arr me bad! %s";
+    public static final String ERROR_PREFIX = "Error | Execution failed: %s";
 
     public static final String COMMAND_FAREWELL = """
-            Later young lass. Hope ta see ya around these here parts!
+            Operation concluded. Farewell, and may your endeavors proceed without error.
             """;
 
     public static final String COMMAND_DEADLINE = """
-            Ho! Me remember for ye:
+            Task acknowledged:
             \t%s
-            Now ya got like %d tasks ta do!
+            Current task count: %d
             """;
 
     public static final String COMMAND_DELETE = """
-            Aite little missy! It shall be gone this here task:
+            Task deletion executed:
             \t%s
-            Now ya got like %d tasks ta do!
+            Remaining tasks: %d
             """;
 
     public static final String COMMAND_EVENT = """
-            Ho! Me remember for ye:
+            Event registered:
             \t%s
-            Now ya got like %d tasks ta do!
+            Current task count: %d
             """;
 
     public static final String COMMAND_FIND = """
-            Here ye go, tasks that contain [%s] young lass:
+            Tasks matching [%s] have been located:
             %s
             """;
 
     public static final String COMMAND_LIST = """
-            Here ye go, ya tasks young lass:
+            Current task registry:
             %s
             """;
 
     public static final String COMMAND_MARK = """
-            Yosh! Gotcha! Marked dat as completed!
+            Task marked as completed:
             \t%s
             """;
 
     public static final String COMMAND_UNMARK = """
-            Aye no worries! Marked dat as not done yet!
+            Task reverted to incomplete status:
             \t%s
             """;
 
     public static final String COMMAND_TODO = """
-            Ho! Me remember for ye:
+            Task addition executed:
             \t%s
-            Now ya got like %d tasks ta do!
+            Current task count: %d
             """;
 
     public static final String COMMAND_UNDO = """
-            Hookay me have undid ya past command:
+            Undo successful. Previous action reverted:
             \t%s
-            Now ya got like %d tasks ta do!
+            Current task count: %d
             """;
 
-    public static final String ERROR_UNKNOWN_COMMAND = "Don't get wut ya sayin missy. Say it again!";
+    public static final String ERROR_UNKNOWN_COMMAND = "Command not recognized. Please issue a valid command.";
 
-    public static final String ERROR_LOAD_SAVE_FILE = "Young lass ya save file ain't loadin rite!";
+    public static final String ERROR_LOAD_SAVE_FILE = "Save file load failed. Verify file integrity.";
 
-    public static final String ERROR_SAVE_SAVE_FILE = "Young lass ya save file ain't savin rite!";
+    public static final String ERROR_SAVE_SAVE_FILE = "Save operation failed. Check write permissions.";
 
-    public static final String ERROR_INDEX_MISSING = "Ya missing da index!";
+    public static final String ERROR_INDEX_MISSING = "Task index missing. Specify an index.";
 
-    public static final String ERROR_PARSE_INDEX = "Ya number ain't numbering!";
+    public static final String ERROR_PARSE_INDEX = "Provided index is invalid. Must be a number.";
 
-    public static final String ERROR_UNKNOWN_FLAG = "Unknown flag was used: %s";
+    public static final String ERROR_UNKNOWN_FLAG = "Unknown flag detected: %s";
 
-    public static final String ERROR_DUPLICATE_FLAG = "Duplicate flag was used: %s";
+    public static final String ERROR_DUPLICATE_FLAG = "Duplicate flag detected: %s";
 
-    public static final String ERROR_NAME_NOT_GIVEN = "Name not given!";
+    public static final String ERROR_NAME_NOT_GIVEN = "Task name not provided.";
 
-    public static final String ERROR_DEADLINE_NOT_GIVEN = "Deadline not given!";
+    public static final String ERROR_DEADLINE_NOT_GIVEN = "Deadline missing for this task.";
 
-    public static final String ERROR_STARTTIME_NOT_GIVEN = "Start time not given!";
+    public static final String ERROR_STARTTIME_NOT_GIVEN = "Start time missing.";
 
-    public static final String ERROR_ENDTIME_NOT_GIVEN = "End time not given!";
+    public static final String ERROR_ENDTIME_NOT_GIVEN = "End time missing.";
 
-    public static final String ERROR_FILTER_NOT_GIVEN = "Filter keyword not given!";
+    public static final String ERROR_FILTER_NOT_GIVEN = "Filter keyword required.";
 
-    public static final String ERROR_INVALID_DATE_FORMAT = "Incorrect date format given lass.";
+    public static final String ERROR_INVALID_DATE_FORMAT = "Invalid date format detected.";
 
-    public static final String ERROR_INVALID_INDEX = "Ya given index ain't correct lass!";
+    public static final String ERROR_INVALID_INDEX = "Specified index is out of range.";
 
-    public static final String ERROR_WRONG_TYPE_TASKSAVESTRING = "An issue occurred! Expected: %s, Got: %s";
+    public static final String ERROR_WRONG_TYPE_TASKSAVESTRING = "Expected task type: %s, received: %s";
 
-    public static final String ERROR_SAVE_CORRUPTED = "Save file might be corrupted, cancelling loading process!!";
+    public static final String ERROR_SAVE_CORRUPTED = "Save file appears corrupted. Operation aborted.";
 
-    public static final String ERROR_UNKNOWN_TASK_TYPE = "There was an issue with loading missy. Unknown task type: %s";
+    public static final String ERROR_UNKNOWN_TASK_TYPE = "Unknown task type encountered: %s";
 
     private Messages() {
     }
-
 }

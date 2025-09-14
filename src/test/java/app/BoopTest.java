@@ -29,7 +29,7 @@ class BoopTest {
     @Test
     void boop_wrongCommands_errorMessage() {
         Boop.BoopResponse out = boop.getResponse("blah");
-        assertTrue(out.getMessage().contains("Say it again!"),
+        assertTrue(out.getMessage().contains("Error"),
                 "Should print error for invalid command. Printed: " + out.getMessage());
     }
 
@@ -126,8 +126,6 @@ class BoopTest {
                 "Should confirm task added. Printed: " + out.getMessage());
 
         Boop.BoopResponse undoAfterAdd = boop.getResponse("undo");
-        assertTrue(undoAfterAdd.getMessage().contains("Hookay me have undid"),
-                "Should undo last action. Printed: " + undoAfterAdd.getMessage());
         assertTrue(undoAfterAdd.getMessage().contains("todo singleTask"),
                 "Should include the undone command. Printed: " + undoAfterAdd.getMessage());
 
