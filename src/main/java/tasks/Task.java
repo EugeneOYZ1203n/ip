@@ -70,6 +70,15 @@ public class Task {
     }
 
     /**
+     * Returns a copy of the current task
+     *
+     * @return Task that has the same properties as the current instance
+     */
+    public Task copy() {
+        return new Task(name, isComplete);
+    }
+
+    /**
      * Converts a Save String format of a task back into a Task instance
      *
      * @param saveString task in format written in save file
@@ -96,5 +105,13 @@ public class Task {
         case "E" -> Event.fromSaveString(saveString);
         default -> throw new BoopError(String.format(Messages.ERROR_UNKNOWN_TASK_TYPE, type));
         };
+    }
+
+    protected String getName() {
+        return name;
+    }
+
+    protected boolean isComplete() {
+        return isComplete;
     }
 }

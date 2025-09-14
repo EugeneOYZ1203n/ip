@@ -48,6 +48,11 @@ public class Deadline extends Task {
         return "D | %s | %s".formatted(super.toSaveString(), this.deadline.toString());
     }
 
+    @Override
+    public Deadline copy() {
+        return new Deadline(getName(), isComplete(), deadline);
+    }
+
     /**
      * Converts a Save String format of a Deadline back into a Deadline instance
      *
