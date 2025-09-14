@@ -1,6 +1,6 @@
 # Boop User Guide
 
-[Boop Ui Image](Ui.png)
+![Boop Ui Image](Ui.png)
 
 Boop is a desktop app for managing tasks, optimized for use via a **Command Line Interface (CLI)** while retaining GUI benefits. If you can type fast, Boop makes task management efficient, fun, and engaging.
 
@@ -28,7 +28,7 @@ Boop is a desktop app for managing tasks, optimized for use via a **Command Line
 
 ## Features
 
-:information_source: **Notes about the command format**:
+**Notes about the command format**:
 
 - Words in `UPPER_CASE` are parameters.  
    Example: in `todo TASK`, `TASK` is a parameter.
