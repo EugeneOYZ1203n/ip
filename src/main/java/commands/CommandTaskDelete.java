@@ -21,7 +21,7 @@ public class CommandTaskDelete extends Command {
      */
     public CommandTaskDelete(String input) {
         this.command = input;
-        
+
         index = CommandHelpers.getIndexArgument(input);
     }
 

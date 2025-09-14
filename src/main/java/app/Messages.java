@@ -58,7 +58,7 @@ public final class Messages {
             \t%s
             Now ya got like %d tasks ta do!
             """;
-    
+
     public static final String COMMAND_UNDO = """
             Hookay me have undid ya past command:
             \t%s
@@ -93,8 +93,7 @@ public final class Messages {
 
     public static final String ERROR_INVALID_INDEX = "Ya given index ain't correct lass!";
 
-    public static final String ERROR_WRONG_TYPE_TASKSAVESTRING =
-            "Some issue occurred! This function is for %s not for: %s";
+    public static final String ERROR_WRONG_TYPE_TASKSAVESTRING = "An issue occurred! Expected: %s, Got: %s";
 
     public static final String ERROR_SAVE_CORRUPTED = "Save file might be corrupted, cancelling loading process!!";
 

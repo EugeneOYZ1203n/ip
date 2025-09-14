@@ -20,7 +20,7 @@ public class CommandTaskUnmark extends Command {
      */
     public CommandTaskUnmark(String input) {
         this.command = input;
-        
+
         index = CommandHelpers.getIndexArgument(input);
     }
 

@@ -25,7 +25,7 @@ public class CommandTaskTodo extends Command {
      */
     public CommandTaskTodo(String input) throws BoopError {
         this.command = input;
-        
+
         Flags flags = Flags.parseFlags(Map.of(), input);
 
         if (!flags.has("")) {

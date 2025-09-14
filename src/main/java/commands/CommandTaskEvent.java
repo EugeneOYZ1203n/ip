@@ -30,7 +30,7 @@ public class CommandTaskEvent extends Command {
      */
     public CommandTaskEvent(String input) throws BoopError {
         this.command = input;
-        
+
         Flags flags = Flags.parseFlags(flagNames, input);
 
         if (!flags.has("")) {

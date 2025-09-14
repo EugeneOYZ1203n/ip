@@ -196,7 +196,7 @@ public final class TaskList {
         prevStateChangeCommandString = command;
     }
 
-    public void storePrevState() {
+    private void storePrevState() {
         prevState = new ArrayList<>();
 
         for (Task task : tasks) {
