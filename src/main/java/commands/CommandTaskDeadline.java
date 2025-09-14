@@ -21,6 +21,7 @@ public class CommandTaskDeadline extends Command {
 
     private final Deadline deadline;
     private int taskSize;
+    private String command;
 
     /**
      * Creates a Deadline command from the given user input.
@@ -30,6 +31,8 @@ public class CommandTaskDeadline extends Command {
      *                   or if the date format is invalid
      */
     public CommandTaskDeadline(String input) throws BoopError {
+        this.command = input;
+
         Flags flags = Flags.parseFlags(flagNames, input);
 
         if (!flags.has("")) {
@@ -51,6 +54,7 @@ public class CommandTaskDeadline extends Command {
     @Override
     public void execute(TaskList tasklist) throws BoopError {
         tasklist.addToList(deadline);
+        tasklist.setStateChangeCommmandString(command);
         taskSize = tasklist.getTaskslistLength();
     }
 

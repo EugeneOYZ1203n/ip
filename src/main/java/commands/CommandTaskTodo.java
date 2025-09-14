@@ -15,6 +15,7 @@ import tasks.Todo;
 public class CommandTaskTodo extends Command {
     private final Todo todo;
     private int taskSize;
+    private String command;
 
     /**
      * Creates a Todo command from the given user input.
@@ -23,6 +24,8 @@ public class CommandTaskTodo extends Command {
      * @throws BoopError if the task name is missing
      */
     public CommandTaskTodo(String input) throws BoopError {
+        this.command = input;
+        
         Flags flags = Flags.parseFlags(Map.of(), input);
 
         if (!flags.has("")) {
@@ -35,6 +38,7 @@ public class CommandTaskTodo extends Command {
     @Override
     public void execute(TaskList tasklist) throws BoopError {
         tasklist.addToList(todo);
+        tasklist.setStateChangeCommmandString(command);
         taskSize = tasklist.getTaskslistLength();
     }
 

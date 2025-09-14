@@ -20,6 +20,7 @@ public class CommandTaskEvent extends Command {
 
     private final Event event;
     private int taskSize;
+    private String command;
 
     /**
      * Creates a Event command from the given user input.
@@ -28,6 +29,8 @@ public class CommandTaskEvent extends Command {
      * @throws BoopError if the task name or start and end times is missing
      */
     public CommandTaskEvent(String input) throws BoopError {
+        this.command = input;
+        
         Flags flags = Flags.parseFlags(flagNames, input);
 
         if (!flags.has("")) {
@@ -49,6 +52,7 @@ public class CommandTaskEvent extends Command {
     @Override
     public void execute(TaskList tasklist) throws BoopError {
         tasklist.addToList(event);
+        tasklist.setStateChangeCommmandString(command);
         taskSize = tasklist.getTaskslistLength();
     }
 

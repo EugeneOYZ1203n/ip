@@ -12,6 +12,7 @@ public class CommandTaskDelete extends Command {
     private final int index;
     private Task task;
     private int taskSize;
+    private String command;
 
     /**
      * Creates a Delete command using the given user input.
@@ -19,6 +20,8 @@ public class CommandTaskDelete extends Command {
      * @param input Raw user input string containing the index of the task to delete
      */
     public CommandTaskDelete(String input) {
+        this.command = input;
+        
         index = CommandHelpers.getIndexArgument(input);
     }
 
@@ -29,6 +32,7 @@ public class CommandTaskDelete extends Command {
         }
 
         task = tasklist.deleteTask(index);
+        tasklist.setStateChangeCommmandString(command);
         taskSize = tasklist.getTaskslistLength();
     }
 

@@ -11,6 +11,7 @@ import tasks.Task;
 public class CommandTaskMark extends Command {
     private final int index;
     private Task task;
+    private String command;
 
     /**
      * Creates a Mark command using the given user input.
@@ -18,6 +19,8 @@ public class CommandTaskMark extends Command {
      * @param input Raw user input string containing the index of the task to mark
      */
     public CommandTaskMark(String input) {
+        this.command = input;
+        
         index = CommandHelpers.getIndexArgument(input);
     }
 
@@ -28,6 +31,7 @@ public class CommandTaskMark extends Command {
         }
 
         task = tasklist.mark(index);
+        tasklist.setStateChangeCommmandString(command);
     }
 
     @Override

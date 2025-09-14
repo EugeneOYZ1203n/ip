@@ -11,6 +11,7 @@ import tasks.Task;
 public class CommandTaskUnmark extends Command {
     private final int index;
     private Task task;
+    private String command;
 
     /**
      * Creates a Unmark command using the given user input.
@@ -18,6 +19,8 @@ public class CommandTaskUnmark extends Command {
      * @param input Raw user input string containing the index of the task to unmark
      */
     public CommandTaskUnmark(String input) {
+        this.command = input;
+        
         index = CommandHelpers.getIndexArgument(input);
     }
 
@@ -28,6 +31,7 @@ public class CommandTaskUnmark extends Command {
         }
 
         task = tasklist.unmark(index);
+        tasklist.setStateChangeCommmandString(command);
     }
 
     @Override
