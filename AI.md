@@ -13,6 +13,7 @@ This file tracks the use of AI tools (mainly ChatGPT GPT-5) during development o
 - Used ChatGPT to draft tests for `TaskList` and `Boop`.
 - Used ChatGPT to refactor code (e.g., flatten nested logic, replace magic string literals with constants).
 - Used ChatGPT to draft commit messages for various changes and refactors.
+- Used ChatGPT to draft initial readme for Boop
 
 ---
 
