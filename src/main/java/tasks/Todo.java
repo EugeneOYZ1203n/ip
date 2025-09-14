@@ -37,6 +37,11 @@ public class Todo extends Task {
         return "T | %s".formatted(super.toSaveString());
     }
 
+    @Override
+    public Todo copy() {
+        return new Todo(getName(), isComplete());
+    }
+
     /**
      * Converts a Save String format of a Todo back into a Todo instance
      *

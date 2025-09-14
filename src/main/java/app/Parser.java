@@ -9,6 +9,7 @@ import commands.CommandTaskFind;
 import commands.CommandTaskList;
 import commands.CommandTaskMark;
 import commands.CommandTaskTodo;
+import commands.CommandTaskUndo;
 import commands.CommandTaskUnmark;
 import errors.BoopError;
 
@@ -58,6 +59,9 @@ public final class Parser {
         }
         case "find" -> {
             return new CommandTaskFind(nextLine);
+        }
+        case "undo" -> {
+            return new CommandTaskUndo();
         }
         default -> throw new BoopError(Messages.ERROR_UNKNOWN_COMMAND);
         }

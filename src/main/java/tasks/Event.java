@@ -45,6 +45,11 @@ public class Event extends Task {
         return "E | %s | %s | %s".formatted(super.toSaveString(), this.fromTime, this.toTime);
     }
 
+    @Override
+    public Event copy() {
+        return new Event(getName(), isComplete(), fromTime, toTime);
+    }
+
     /**
      * Converts a Save String format of a Event back into a Event instance
      *

@@ -16,6 +16,9 @@ public final class TaskList {
     private List<Task> tasks;
     private SaveHandler saveHandler;
 
+    private List<Task> prevState;
+    private String prevStateChangeCommandString;
+
     /**
      * Creates a new task list that uses a save handler for persistence,
      * initializing it with the given save file path.
@@ -81,6 +84,7 @@ public final class TaskList {
      */
     public void addToList(Task newTask) {
         assert newTask != null : "Cannot add null task";
+        storePrevState();
         tasks.add(newTask);
         saveTasks();
     }
@@ -93,6 +97,7 @@ public final class TaskList {
      */
     public Task deleteTask(int index) {
         assert isValidIndex(index) : "Index out of bounds for deleteTask: " + index;
+        storePrevState();
         Task task = tasks.get(index - 1);
         tasks.remove(index - 1);
         saveTasks();
@@ -149,6 +154,7 @@ public final class TaskList {
      */
     public Task mark(int index) {
         assert isValidIndex(index) : "Index out of bounds for deleteTask: " + index;
+        storePrevState();
         Task task = tasks.get(index - 1);
         task.complete();
         saveTasks();
@@ -163,6 +169,7 @@ public final class TaskList {
      */
     public Task unmark(int index) {
         assert isValidIndex(index) : "Index out of bounds for deleteTask: " + index;
+        storePrevState();
         Task task = tasks.get(index - 1);
         task.uncomplete();
         saveTasks();
@@ -177,5 +184,48 @@ public final class TaskList {
      */
     public boolean isValidIndex(int index) {
         return index <= tasks.size() && index >= 1;
+    }
+
+    /**
+     * Stores the command string that changed the task state
+     * Used for undo functionality
+     *
+     * @param command the command string of the command used to change the state
+     */
+    public void setStateChangeCommmandString(String command) {
+        prevStateChangeCommandString = command;
+    }
+
+    private void storePrevState() {
+        prevState = new ArrayList<>();
+
+        for (Task task : tasks) {
+            prevState.add(task.copy());
+        }
+    }
+
+    /**
+     * Restores the previous state of the task list.
+     * Used for undo functionality.
+     *
+     * @return Command String that previously changed state that was just undo
+     * @throws BoopError if there is no previous state to restore
+     */
+    public String undo() {
+        if (prevState == null) {
+            throw new BoopError("Nothing to undo!");
+        }
+
+        assert prevStateChangeCommandString != null && !prevStateChangeCommandString.isEmpty()
+                : "Prev state change command string should be non empty";
+
+        tasks = prevState;
+        saveTasks();
+
+        prevState = null;
+        String tmp = prevStateChangeCommandString;
+        prevStateChangeCommandString = null;
+
+        return tmp;
     }
 }
