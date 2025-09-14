@@ -1,19 +1,19 @@
 package app;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import tasks.Todo;
-import tasks.Event;
-import tasks.Deadline;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDate;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import tasks.Deadline;
+import tasks.Event;
+import tasks.Todo;
+
 public class TaskListTest {
-    TaskList taskList;
+    private TaskList taskList;
 
     @BeforeEach
     void setup() {
@@ -21,7 +21,7 @@ public class TaskListTest {
     }
 
     @Test
-    void tasklist_addLengthList_NormalOperation() {
+    void tasklist_addLengthList_normalOperation() {
         Todo todo = new Todo("borrow book");
         taskList.addToList(todo);
 

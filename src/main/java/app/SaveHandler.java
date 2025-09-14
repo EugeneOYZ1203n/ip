@@ -7,16 +7,25 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
+/**
+ * Handles saving and loading of string data to and from a specified file path.
+ * Provides utility methods to persist data across program executions.
+ */
 public class SaveHandler {
     private final Path savePath;
 
+    /**
+     * Creates a SaveHandler with the given file path for saving and loading data.
+     *
+     * @param savePathName file path to store or load data
+     */
     public SaveHandler(String savePathName) {
         this.savePath = Paths.get(savePathName);
     }
 
     /**
      * Saves given strings into the file at the previously set File Path
-     * 
+     *
      * @param saveStrings
      * @throws IOException
      */
@@ -33,10 +42,14 @@ public class SaveHandler {
     }
 
     /**
-     * Loads given strings from the file at the previously set File Path
-     * 
-     * @return strings stored in save file as an array
-     * @throws IOException
+     * Loads strings from the file at the specified path.
+     * If the file does not exist, it will be created (along with any parent
+     * directories),
+     * and an empty array will be returned.
+     *
+     * @return an array of strings read from the file
+     * @throws IOException if an I/O error occurs while creating directories or
+     *                     reading from the file
      */
     public String[] load() throws IOException {
         if (!Files.exists(savePath)) {

@@ -1,18 +1,21 @@
 package commands;
 
+import app.Messages;
 import app.TaskList;
 import errors.BoopError;
 
-public class C_Farewell extends Command {
+/**
+ * This command signals that the program should exit
+ * after displaying a farewell message.
+ */
+public class CommandFarewell extends Command {
     @Override
     public void execute(TaskList tasklist) throws BoopError {
     }
 
     @Override
     public String getMessage() {
-        return """
-                Later young lass. Hope ta see ya around these here parts!
-                """;
+        return Messages.COMMAND_FAREWELL;
     }
 
     @Override

@@ -1,22 +1,31 @@
 package commands;
 
+import app.Messages;
 import app.TaskList;
 import errors.BoopError;
 import tasks.Task;
 
-public class C_TaskDelete extends Command {
+/**
+ * This command deletes a task from the task list by its index.
+ */
+public class CommandTaskDelete extends Command {
     private final int index;
     private Task task;
     private int taskSize;
 
-    public C_TaskDelete(String input) {
+    /**
+     * Creates a Delete command using the given user input.
+     *
+     * @param input Raw user input string containing the index of the task to delete
+     */
+    public CommandTaskDelete(String input) {
         index = CommandHelpers.getIndexArgument(input);
     }
 
     @Override
     public void execute(TaskList tasklist) throws BoopError {
         if (!tasklist.isValidIndex(index)) {
-            throw new BoopError("Ya given index ain't correct lass!");
+            throw new BoopError(Messages.ERROR_INVALID_INDEX);
         }
 
         task = tasklist.deleteTask(index);
@@ -25,10 +34,6 @@ public class C_TaskDelete extends Command {
 
     @Override
     public String getMessage() {
-        return """
-                Aite little missy! It shall be gone this here task:
-                \t%s
-                Now ya got like %d tasks ta do!
-                """.formatted(task.toString(), taskSize);
+        return Messages.COMMAND_DELETE.formatted(task.toString(), taskSize);
     }
 }

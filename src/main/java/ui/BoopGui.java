@@ -9,6 +9,11 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+/**
+ * JavaFX GUI application for interacting with the Boop task manager.
+ * Initializes and displays the main window of the application,
+ * and injects the Boop instance into the controller.
+ */
 public class BoopGui extends Application {
 
     private final Boop boop = new Boop();
