@@ -5,16 +5,10 @@ package app;
  */
 public final class Messages {
 
-    private Messages() {
-    }
-
-    // Greetings
     public static final String GREETING = "Yo! I'm %s. :D\nWat can ye do for thee, young lass?";
 
-    // Task load messages
     public static final String TASKS_LOADED = "Tasks loaded miss. :D";
 
-    // Error messages
     public static final String ERROR_PREFIX = "Arr me bad! %s";
 
     public static final String COMMAND_FAREWELL = """
@@ -64,4 +58,8 @@ public final class Messages {
             \t%s
             Now ya got like %d tasks ta do!
             """;
+
+    private Messages() {
+    }
+
 }
