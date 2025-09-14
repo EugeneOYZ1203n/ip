@@ -1,7 +1,5 @@
 package app;
 
-import java.util.Scanner;
-
 import commands.C_Farewell;
 import commands.C_TaskDeadline;
 import commands.C_TaskDelete;
@@ -15,8 +13,6 @@ import commands.Command;
 import errors.BoopError;
 
 public final class Parser {
-    static Scanner sc = new Scanner(System.in);
-
     /**
      * Returns the next command to be executed
      * 
