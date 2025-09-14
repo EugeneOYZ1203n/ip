@@ -63,11 +63,8 @@ public class TaskListTest {
         Todo todo = new Todo("borrow book");
         taskList.addToList(todo);
 
-        // Save a previous state manually to simulate a prior command
-        taskList.storePrevState();
         taskList.setStateChangeCommmandString("add borrow book");
 
-        // Add another task so that undo actually restores prev state
         Todo anotherTodo = new Todo("write report");
         taskList.addToList(anotherTodo);
 
