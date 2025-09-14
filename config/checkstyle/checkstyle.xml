@@ -411,7 +411,6 @@
             <property name="accessModifiers" value="public"/>
             <property name="validateThrows" value="false"/>
             <property name="allowMissingParamTags" value="false"/>
-            <property name="allowMissingThrowsTags" value="false"/>
             <property name="allowMissingReturnTag" value="false"/>
             <property name="tokens" value="METHOD_DEF, ANNOTATION_FIELD_DEF"/>
         </module>
