@@ -6,11 +6,20 @@ import app.TaskList;
 import commands.CommandHelpers.Flags;
 import errors.BoopError;
 
-public class C_TaskFind extends Command {
+/**
+ * This command searches the task list for tasks that match a given keyword.
+ */
+public class CommandTaskFind extends Command {
     private String taskDisplay;
     private String filterRegex;
 
-    public C_TaskFind(String input) throws BoopError {
+    /**
+     * Creates a Find command using the given user input.
+     *
+     * @param input Raw user input string containing the search keyword
+     * @throws BoopError If no keyword is provided
+     */
+    public CommandTaskFind(String input) throws BoopError {
         Flags flags = Flags.parseFlags(Map.of(), input);
 
         if (!flags.has("")) {

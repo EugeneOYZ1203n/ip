@@ -3,7 +3,10 @@ package commands;
 import app.TaskList;
 import errors.BoopError;
 
-public class C_TaskList extends Command {
+/**
+ * This command displays all tasks currently stored in the task list.
+ */
+public class CommandTaskList extends Command {
     private String taskDisplay;
 
     @Override

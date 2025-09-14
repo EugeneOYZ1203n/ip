@@ -7,11 +7,21 @@ import commands.CommandHelpers.Flags;
 import errors.BoopError;
 import tasks.Todo;
 
-public class C_TaskTodo extends Command {
+/**
+ * This command creates a new Todo task.
+ * The task is then added to the task list and saved.
+ */
+public class CommandTaskTodo extends Command {
     private final Todo todo;
     private int taskSize;
 
-    public C_TaskTodo(String input) throws BoopError {
+    /**
+     * Creates a Todo command from the given user input.
+     *
+     * @param input Raw user input string
+     * @throws BoopError if the task name is missing
+     */
+    public CommandTaskTodo(String input) throws BoopError {
         Flags flags = Flags.parseFlags(Map.of(), input);
 
         if (!flags.has("")) {

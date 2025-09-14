@@ -4,11 +4,19 @@ import app.TaskList;
 import errors.BoopError;
 import tasks.Task;
 
-public class C_TaskMark extends Command {
+/**
+ * This command marks a task in the task list as completed by its index.
+ */
+public class CommandTaskMark extends Command {
     private final int index;
     private Task task;
 
-    public C_TaskMark(String input) {
+    /**
+     * Creates a Mark command using the given user input.
+     *
+     * @param input Raw user input string containing the index of the task to mark
+     */
+    public CommandTaskMark(String input) {
         index = CommandHelpers.getIndexArgument(input);
     }
 

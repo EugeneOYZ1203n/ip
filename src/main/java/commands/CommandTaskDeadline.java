@@ -10,14 +10,25 @@ import commands.CommandHelpers.Flags;
 import errors.BoopError;
 import tasks.Deadline;
 
-public class C_TaskDeadline extends Command {
+/**
+ * This command creates a new Deadline task.
+ * The task is then added to the task list and saved.
+ */
+public class CommandTaskDeadline extends Command {
     private static final Map<String, List<String>> flagNames = Map.of(
             "by", List.of("by", "b"));
 
     private final Deadline deadline;
     private int taskSize;
 
-    public C_TaskDeadline(String input) throws BoopError {
+    /**
+     * Creates a Deadline command from the given user input.
+     *
+     * @param input Raw user input string
+     * @throws BoopError if the task name or deadline is missing,
+     *                   or if the date format is invalid
+     */
+    public CommandTaskDeadline(String input) throws BoopError {
         Flags flags = Flags.parseFlags(flagNames, input);
 
         if (!flags.has("")) {

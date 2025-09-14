@@ -6,10 +6,17 @@ import java.util.Map;
 
 import errors.BoopError;
 
+/**
+ * Utility class providing helper methods for parsing and handling user command
+ * inputs.
+ *
+ * Includes methods such as extracting indices or validating arguments for
+ * commands.
+ */
 public class CommandHelpers {
     /**
      * Gets the index argument for simple task functions like mark and delete
-     * 
+     *
      * @param input Full input string passed by the user
      * @return Index given as parameter by the user
      * @throws BoopError
@@ -31,22 +38,17 @@ public class CommandHelpers {
         return index;
     }
 
+    /**
+     * Represents a set of parsed flags from user input.
+     *
+     * Provides easy access to command parameters by mapping flag names to their
+     * values,
+     * including support for canonical names and aliases.
+     * Includes a static method parseFlags(Map, String) for parsing input strings.
+     */
     public static class Flags {
         private final Map<String, String> values = new HashMap<>();
         private final Map<String, String> aliasToCanonical = new HashMap<>();
-
-        /**
-         * Returns flags in a format that allows for easy access
-         * 
-         * @param definitions Mapping of canonical flag to all valid flag names
-         * @param input       Full input string passed by the user
-         * @return Flags that contain input parameters
-         */
-        public static Flags parseFlags(
-                Map<String, List<String>> definitions,
-                String input) {
-            return new Flags(definitions, input);
-        }
 
         private Flags(Map<String, List<String>> definitions, String input) throws BoopError {
             // Build alias lookup, actual flag + list of possible options
@@ -91,8 +93,21 @@ public class CommandHelpers {
         }
 
         /**
+         * Returns flags in a format that allows for easy access
+         *
+         * @param definitions Mapping of canonical flag to all valid flag names
+         * @param input       Full input string passed by the user
+         * @return Flags that contain input parameters
+         */
+        public static Flags parseFlags(
+                Map<String, List<String>> definitions,
+                String input) {
+            return new Flags(definitions, input);
+        }
+
+        /**
          * Returns value of flag
-         * 
+         *
          * @param flag Canonical name of flag
          * @return flag value
          */
@@ -102,7 +117,7 @@ public class CommandHelpers {
 
         /**
          * Returns whether flag is present
-         * 
+         *
          * @param flag Canonical name of flag
          * @return is flag present
          */

@@ -4,11 +4,19 @@ import app.TaskList;
 import errors.BoopError;
 import tasks.Task;
 
-public class C_TaskUnmark extends Command {
+/**
+ * This command marks a task in the task list as not completed by its index.
+ */
+public class CommandTaskUnmark extends Command {
     private final int index;
     private Task task;
 
-    public C_TaskUnmark(String input) {
+    /**
+     * Creates a Unmark command using the given user input.
+     *
+     * @param input Raw user input string containing the index of the task to unmark
+     */
+    public CommandTaskUnmark(String input) {
         index = CommandHelpers.getIndexArgument(input);
     }
 

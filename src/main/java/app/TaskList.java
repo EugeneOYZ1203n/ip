@@ -8,15 +8,31 @@ import java.util.regex.Pattern;
 import errors.BoopError;
 import tasks.Task;
 
+/**
+ * Represents a list of tasks with persistent storage support.
+ * Provides methods to add, remove, update, and query tasks.
+ */
 public final class TaskList {
-    List<Task> tasks;
-    SaveHandler saveHandler;
+    private List<Task> tasks;
+    private SaveHandler saveHandler;
 
+    /**
+     * Creates a new task list that uses a save handler for persistence,
+     * initializing it with the given save file path.
+     *
+     * @param savePathName the path to the file used for saving and loading tasks
+     */
     public TaskList(String savePathName) {
         tasks = new ArrayList<>();
         saveHandler = new SaveHandler(savePathName);
     }
 
+    /**
+     * Creates a new task list that uses the specified save handler for persistence.
+     * This allows injecting a custom save handler (e.g., for testing).
+     *
+     * @param saveHandler the save handler to use for saving and loading tasks
+     */
     public TaskList(SaveHandler saveHandler) {
         tasks = new ArrayList<>();
         this.saveHandler = saveHandler;
@@ -24,7 +40,7 @@ public final class TaskList {
 
     /**
      * Uses savehandler to retrieve saved tasks and converts them back to tasks
-     * 
+     *
      * @throws BoopError
      */
     public void loadTasks() throws BoopError {
@@ -41,7 +57,7 @@ public final class TaskList {
 
     /**
      * Uses savehandler to save tasks and write them into save file
-     * 
+     *
      * @throws BoopError
      */
     private void saveTasks() {
@@ -59,7 +75,7 @@ public final class TaskList {
 
     /**
      * Adds a new task to the task list
-     * 
+     *
      * @param newTask Task to be added
      */
     public void addToList(Task newTask) {
@@ -69,7 +85,7 @@ public final class TaskList {
 
     /**
      * Deletes a task at the given index of the task list
-     * 
+     *
      * @param index Starts from 1
      * @return Task that was deleted
      */
@@ -82,7 +98,7 @@ public final class TaskList {
 
     /**
      * Returns the length of the list
-     * 
+     *
      * @return Integer length of list
      */
     public int getTaskslistLength() {
@@ -92,7 +108,7 @@ public final class TaskList {
     /**
      * Returns the String representation of the Task list
      * Only includes tasks that fit the filter regex
-     * 
+     *
      * @param regex Regex used to filter tasks
      * @return String representation of the Task list
      */
@@ -114,7 +130,7 @@ public final class TaskList {
 
     /**
      * Returns the String representation of the Task list
-     * 
+     *
      * @return String representation of the Task list
      */
     public String display() {
@@ -123,7 +139,7 @@ public final class TaskList {
 
     /**
      * Marks a task at the given index of the task list
-     * 
+     *
      * @param index Starts from 1
      * @return Task that was deleted
      */
@@ -136,7 +152,7 @@ public final class TaskList {
 
     /**
      * Unmarks a task at the given index of the task list
-     * 
+     *
      * @param index Starts from 1
      * @return Task that was deleted
      */
@@ -149,7 +165,7 @@ public final class TaskList {
 
     /**
      * Checks if a given index is valid
-     * 
+     *
      * @param index Starts from 1
      * @return Whether the index is valid
      */

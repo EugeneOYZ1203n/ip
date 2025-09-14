@@ -52,13 +52,13 @@ public class MainWindow extends AnchorPane {
         String input = userInput.getText();
         BoopResponse response = boop.getResponse(input);
 
-        if (response.isExit) {
+        if (response.isExit()) {
             Stage stage = (Stage) userInput.getScene().getWindow();
             stage.close();
             return;
         }
 
-        String boopMessage = response.message;
+        String boopMessage = response.getMessage();
 
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
