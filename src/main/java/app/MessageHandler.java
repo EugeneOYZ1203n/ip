@@ -19,10 +19,7 @@ public final class MessageHandler {
      * @return a greeting string with the application's name
      */
     public String greeting() {
-        return """
-                Yo! I'm %s. :D
-                Wat can ye do for thee, young lass?
-                """.formatted(name);
+        return Messages.GREETING.formatted(name);
     }
 
     /**
@@ -32,9 +29,7 @@ public final class MessageHandler {
      * @return a confirmation string
      */
     public String finishLoading() {
-        return """
-                Tasks loaded miss. :D
-                """;
+        return Messages.TASKS_LOADED;
     }
 
     /**
@@ -45,8 +40,6 @@ public final class MessageHandler {
      * @return a formatted string describing the error
      */
     public String errorMessage(BoopError error) {
-        return """
-                Arr me bad! %s
-                """.formatted(error.getMessage());
+        return Messages.ERROR_PREFIX.formatted(error.getMessage());
     }
 }

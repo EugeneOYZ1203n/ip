@@ -1,5 +1,6 @@
 package commands;
 
+import app.Messages;
 import app.TaskList;
 import errors.BoopError;
 
@@ -16,9 +17,6 @@ public class CommandTaskList extends Command {
 
     @Override
     public String getMessage() {
-        return """
-                Here ye go, ya tasks young lass:
-                %s
-                """.formatted(taskDisplay);
+        return Messages.COMMAND_LIST.formatted(taskDisplay);
     }
 }

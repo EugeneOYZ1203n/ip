@@ -2,6 +2,7 @@ package commands;
 
 import java.util.Map;
 
+import app.Messages;
 import app.TaskList;
 import commands.CommandHelpers.Flags;
 import errors.BoopError;
@@ -36,9 +37,6 @@ public class CommandTaskFind extends Command {
 
     @Override
     public String getMessage() {
-        return """
-                Here ye go, tasks that contain [%s] young lass:
-                %s
-                """.formatted(filterRegex, taskDisplay);
+        return Messages.COMMAND_FIND.formatted(filterRegex, taskDisplay);
     }
 }

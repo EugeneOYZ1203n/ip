@@ -5,6 +5,7 @@ import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Map;
 
+import app.Messages;
 import app.TaskList;
 import commands.CommandHelpers.Flags;
 import errors.BoopError;
@@ -55,10 +56,6 @@ public class CommandTaskDeadline extends Command {
 
     @Override
     public String getMessage() {
-        return """
-                Ho! Me remember for ye:
-                \t%s
-                Now ya got like %d tasks ta do!
-                """.formatted(deadline.toString(), taskSize);
+        return Messages.COMMAND_DEADLINE.formatted(deadline.toString(), taskSize);
     }
 }

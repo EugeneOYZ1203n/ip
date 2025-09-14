@@ -2,6 +2,7 @@ package commands;
 
 import java.util.Map;
 
+import app.Messages;
 import app.TaskList;
 import commands.CommandHelpers.Flags;
 import errors.BoopError;
@@ -39,10 +40,6 @@ public class CommandTaskTodo extends Command {
 
     @Override
     public String getMessage() {
-        return """
-                Ho! Me remember for ye:
-                \t%s
-                Now ya got like %d tasks ta do!
-                """.formatted(todo.toString(), taskSize);
+        return Messages.COMMAND_TODO.formatted(todo.toString(), taskSize);
     }
 }

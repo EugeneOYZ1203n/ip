@@ -1,5 +1,6 @@
 package commands;
 
+import app.Messages;
 import app.TaskList;
 import errors.BoopError;
 import tasks.Task;
@@ -31,9 +32,6 @@ public class CommandTaskUnmark extends Command {
 
     @Override
     public String getMessage() {
-        return """
-                Aye no worries! Marked dat as not done yet!
-                \t%s
-                """.formatted(task.toString());
+        return Messages.COMMAND_UNMARK.formatted(task.toString());
     }
 }

@@ -1,5 +1,6 @@
 package commands;
 
+import app.Messages;
 import app.TaskList;
 import errors.BoopError;
 import tasks.Task;
@@ -31,9 +32,6 @@ public class CommandTaskMark extends Command {
 
     @Override
     public String getMessage() {
-        return """
-                Yosh! Gotcha! Marked dat as completed!
-                \t%s
-                """.formatted(task.toString());
+        return Messages.COMMAND_MARK.formatted(task.toString());
     }
 }

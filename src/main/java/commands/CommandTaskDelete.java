@@ -1,5 +1,6 @@
 package commands;
 
+import app.Messages;
 import app.TaskList;
 import errors.BoopError;
 import tasks.Task;
@@ -33,10 +34,6 @@ public class CommandTaskDelete extends Command {
 
     @Override
     public String getMessage() {
-        return """
-                Aite little missy! It shall be gone this here task:
-                \t%s
-                Now ya got like %d tasks ta do!
-                """.formatted(task.toString(), taskSize);
+        return Messages.COMMAND_DELETE.formatted(task.toString(), taskSize);
     }
 }
