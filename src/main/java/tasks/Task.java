@@ -52,13 +52,18 @@ public class Task {
      * @throws BoopError
      */
     public static Task fromSaveString(String saveString) throws BoopError {
+        assert saveString != null && !saveString.isEmpty() : "saveString must not be null or empty";
+
         String[] parts = saveString.split(" \\| ");
+        assert parts.length >= 3 : "saveString must have at least 3 parts";
 
         if (parts.length < 3) {
             throw new BoopError("Save file might be corrupted, cancelling loading process!!");
         }
 
         String type = parts[0];
+        assert type.equals("T") || type.equals("D") || type.equals("E")
+                : "Task type must be T, D, or E, but got: " + type;
 
         return switch (type) {
             case "T" -> Todo.fromSaveString(saveString);

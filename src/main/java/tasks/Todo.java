@@ -36,6 +36,7 @@ public class Todo extends Task {
 
         boolean isDone = parts[1].equals("X");
         String name = parts[2];
+        assert name != null && !name.isEmpty() : "Task name must not be null or empty";
 
         return new Todo(name, isDone);
     }
