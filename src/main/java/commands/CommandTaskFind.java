@@ -24,7 +24,7 @@ public class CommandTaskFind extends Command {
         Flags flags = Flags.parseFlags(Map.of(), input);
 
         if (!flags.has("")) {
-            throw new BoopError("Filter keyword not given!");
+            throw new BoopError(Messages.ERROR_FILTER_NOT_GIVEN);
         }
 
         filterRegex = flags.get("");

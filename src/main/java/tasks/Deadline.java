@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+import app.Messages;
 import errors.BoopError;
 
 /**
@@ -59,11 +60,11 @@ public class Deadline extends Task {
         String type = parts[0];
 
         if (!type.equals("D")) {
-            throw new BoopError("Some issue occured! This function is for Deadline not for: " + type);
+            throw new BoopError(String.format(Messages.ERROR_WRONG_TYPE_TASKSAVESTRING, "Deadline", type));
         }
 
         if (parts.length < 4) {
-            throw new BoopError("Save file might be corrupted, cancelling loading process!!");
+            throw new BoopError(Messages.ERROR_SAVE_CORRUPTED);
         }
 
         boolean isDone = parts[1].equals("X");
@@ -72,7 +73,7 @@ public class Deadline extends Task {
         try {
             deadline = LocalDate.parse(parts[3]);
         } catch (DateTimeParseException e) {
-            throw new BoopError("Save file might be corrupted, cancelling loading process!!");
+            throw new BoopError(Messages.ERROR_SAVE_CORRUPTED);
         }
 
         return new Deadline(name, isDone, deadline);

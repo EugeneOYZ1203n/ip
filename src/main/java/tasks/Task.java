@@ -1,5 +1,6 @@
 package tasks;
 
+import app.Messages;
 import errors.BoopError;
 
 /**
@@ -79,7 +80,7 @@ public class Task {
         String[] parts = saveString.split(" \\| ");
 
         if (parts.length < 3) {
-            throw new BoopError("Save file might be corrupted, cancelling loading process!!");
+            throw new BoopError(Messages.ERROR_SAVE_CORRUPTED);
         }
 
         String type = parts[0];
@@ -88,7 +89,7 @@ public class Task {
         case "T" -> Todo.fromSaveString(saveString);
         case "D" -> Deadline.fromSaveString(saveString);
         case "E" -> Event.fromSaveString(saveString);
-        default -> throw new BoopError("There was an issue with loadin' missy. Dun know wat dis ere is: " + type);
+        default -> throw new BoopError(String.format(Messages.ERROR_UNKNOWN_TASK_TYPE, type));
         };
     }
 }

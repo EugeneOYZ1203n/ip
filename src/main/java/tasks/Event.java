@@ -1,5 +1,6 @@
 package tasks;
 
+import app.Messages;
 import errors.BoopError;
 
 /**
@@ -56,11 +57,11 @@ public class Event extends Task {
         String type = parts[0];
 
         if (!type.equals("E")) {
-            throw new BoopError("Some issue occured! This function is for Events not for: " + type);
+            throw new BoopError(String.format(Messages.ERROR_WRONG_TYPE_TASKSAVESTRING, "Event", type));
         }
 
         if (parts.length < 5) {
-            throw new BoopError("Save file might be corrupted, cancelling loading process!!");
+            throw new BoopError(Messages.ERROR_SAVE_CORRUPTED);
         }
 
         boolean isDone = parts[1].equals("X");

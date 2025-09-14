@@ -31,13 +31,13 @@ public class CommandTaskEvent extends Command {
         Flags flags = Flags.parseFlags(flagNames, input);
 
         if (!flags.has("")) {
-            throw new BoopError("Name not given!");
+            throw new BoopError(Messages.ERROR_NAME_NOT_GIVEN);
         }
         if (!flags.has("from")) {
-            throw new BoopError("Start time not given!");
+            throw new BoopError(Messages.ERROR_STARTTIME_NOT_GIVEN);
         }
         if (!flags.has("to")) {
-            throw new BoopError("End time not given!");
+            throw new BoopError(Messages.ERROR_ENDTIME_NOT_GIVEN);
         }
 
         event = new Event(

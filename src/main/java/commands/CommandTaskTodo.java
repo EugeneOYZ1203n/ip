@@ -26,7 +26,7 @@ public class CommandTaskTodo extends Command {
         Flags flags = Flags.parseFlags(Map.of(), input);
 
         if (!flags.has("")) {
-            throw new BoopError("Name not given!");
+            throw new BoopError(Messages.ERROR_NAME_NOT_GIVEN);
         }
 
         todo = new Todo(flags.get(""));

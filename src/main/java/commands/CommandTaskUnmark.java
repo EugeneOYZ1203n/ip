@@ -24,7 +24,7 @@ public class CommandTaskUnmark extends Command {
     @Override
     public void execute(TaskList tasklist) throws BoopError {
         if (!tasklist.isValidIndex(index)) {
-            throw new BoopError("Ya given index ain't correct lass!");
+            throw new BoopError(Messages.ERROR_INVALID_INDEX);
         }
 
         task = tasklist.unmark(index);

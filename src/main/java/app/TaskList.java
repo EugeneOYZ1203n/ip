@@ -51,7 +51,7 @@ public final class TaskList {
             }
         } catch (IOException e) {
             tasks = new ArrayList<>();
-            throw new BoopError("Young lass ya save file ain't loadin rite!");
+            throw new BoopError(Messages.ERROR_LOAD_SAVE_FILE);
         }
     }
 
@@ -69,7 +69,7 @@ public final class TaskList {
 
             saveHandler.save(saveStrings);
         } catch (IOException e) {
-            throw new BoopError("Young lass ya save file ain't savin rite!");
+            throw new BoopError(Messages.ERROR_SAVE_SAVE_FILE);
         }
     }
 

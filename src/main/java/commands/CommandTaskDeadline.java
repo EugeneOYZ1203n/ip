@@ -33,10 +33,10 @@ public class CommandTaskDeadline extends Command {
         Flags flags = Flags.parseFlags(flagNames, input);
 
         if (!flags.has("")) {
-            throw new BoopError("Name not given!");
+            throw new BoopError(Messages.ERROR_NAME_NOT_GIVEN);
         }
         if (!flags.has("by")) {
-            throw new BoopError("Deadline not given!");
+            throw new BoopError(Messages.ERROR_DEADLINE_NOT_GIVEN);
         }
 
         try {
@@ -44,7 +44,7 @@ public class CommandTaskDeadline extends Command {
                     flags.get(""),
                     LocalDate.parse(flags.get("by")));
         } catch (DateTimeParseException e) {
-            throw new BoopError("Incorrect date format given lass.");
+            throw new BoopError(Messages.ERROR_INVALID_DATE_FORMAT);
         }
     }
 

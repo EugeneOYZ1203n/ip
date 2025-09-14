@@ -59,7 +59,7 @@ public final class Parser {
         case "find" -> {
             return new CommandTaskFind(nextLine);
         }
-        default -> throw new BoopError("Don't get wut ya sayin missy. Say it again!");
+        default -> throw new BoopError(Messages.ERROR_UNKNOWN_COMMAND);
         }
     }
 }

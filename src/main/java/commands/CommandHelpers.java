@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import app.Messages;
 import errors.BoopError;
 
 /**
@@ -25,14 +26,14 @@ public class CommandHelpers {
         String[] words = input.split("\\s+", 2);
 
         if (words.length < 2) {
-            throw new BoopError("Ya missing da index!");
+            throw new BoopError(Messages.ERROR_INDEX_MISSING);
         }
 
         int index;
         try {
             index = Integer.parseInt(words[1]);
         } catch (NumberFormatException e) {
-            throw new BoopError("Ya number ain't numbering!");
+            throw new BoopError(Messages.ERROR_PARSE_INDEX);
         }
 
         return index;
@@ -105,10 +106,10 @@ public class CommandHelpers {
 
         private void validateFlag(String rawFlag, String canonical) throws BoopError {
             if (canonical == null) {
-                throw new BoopError("Unknown flag was used: " + rawFlag);
+                throw new BoopError(String.format(Messages.ERROR_UNKNOWN_FLAG, rawFlag));
             }
             if (values.containsKey(canonical)) {
-                throw new BoopError("Duplicate flag was used: " + rawFlag);
+                throw new BoopError(String.format(Messages.ERROR_DUPLICATE_FLAG, rawFlag));
             }
         }
 
